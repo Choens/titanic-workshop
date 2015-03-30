@@ -22,4 +22,6 @@ Instructions and demo code for the Titanic Workshop at the 2015 SUNY Albany Open
     - http://ess.r-project.org/
     - http://www.walware.de/goto/statet
 
-The presenter will switch demonstrate and use both RStudio and Emacs ESS. Participant may choose to use any R interface they choose. RStudio is the easiest to install and setup. ESS is the best for Emacs fans. Participants can use ANY operational interface, including the default R interpreter, but the presenter recommends installing RStudio if you don't have a pre-established / strong opinion about it.
+The presenter will lead the workshop using both RStudio and Emacs ESS. Participants may choose to use any R interface they choose. RStudio is the easiest to install and setup. ESS is the best for Emacs fans. Statet is the best option of fans of Eclipse. There are dedicated interfaces for Sublime and other popular text editors such as Vim. 
+
+Participants may use R interface, including the default R interpreter, but the presenter only claims to be knowledgeable of and support RStudio / ESS. Use other interfaces, such as Statet, only if you feel confident you can set up and configure them prior to the workshop.
