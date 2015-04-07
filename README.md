@@ -9,8 +9,18 @@ Instructions and demo code for the Titanic Workshop at the 2015 SUNY Albany Open
 
     http://cran.r-project.org/
  
-3. Run prereqs.R (COMING SOON!) to install needed packages. You will need an Internet connection for this script to work.
-4. Download or clone this repo before coming to the workshop. There will be code examples you will want to have access to. You do not need to know how to use Git to participate in this workshop. You can just download this repo as a ZIP file.
+3. Run packages.R to install needed packages. You will need an
+   Internet connection for this script to work. Feel free to just copy
+   paste it into R / RStudio or run it with:
+
+    setwd("path to folder holding packages.R")
+
+    source("packages.R")
+
+4. Download or clone this repo before coming to the workshop. There
+   will be code examples you will want to have access to. You do not
+   need to know how to use Git to participate in this workshop. You
+   can just download this repo as a ZIP file.
 
     Note: This repo is NOT yet complete. I expect this to be ready by February 10, 2015.
 
@@ -22,6 +32,14 @@ Instructions and demo code for the Titanic Workshop at the 2015 SUNY Albany Open
     - http://ess.r-project.org/
     - http://www.walware.de/goto/statet
 
-The presenter will lead the workshop using both RStudio and Emacs ESS. Participants may choose to use any R interface they choose. RStudio is the easiest to install and setup. ESS is the best for Emacs fans. Statet is the best option of fans of Eclipse. There are dedicated interfaces for Sublime and other popular text editors such as Vim. 
+The presenter will lead the workshop using both RStudio and Emacs
+ESS. Participants may choose to use any R interface they
+choose. RStudio is the easiest to install and setup. ESS is the best
+for Emacs fans. Statet is the best option of fans of Eclipse. There
+are dedicated interfaces for Sublime and other popular text editors
+such as Vim.
 
-Participants may use R interface, including the default R interpreter, but the presenter only claims to be knowledgeable of and support RStudio / ESS. Use other interfaces, such as Statet, only if you feel confident you can set up and configure them prior to the workshop.
+Participants may use R interface, including the default R interpreter,
+but the presenter only claims to be knowledgeable of and support
+RStudio / ESS. Use other interfaces, such as Statet, only if you feel
+confident you can set up and configure them prior to the workshop.
