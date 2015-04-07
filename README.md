@@ -43,3 +43,12 @@ Participants may use R interface, including the default R interpreter,
 but the presenter only claims to be knowledgeable of and support
 RStudio / ESS. Use other interfaces, such as Statet, only if you feel
 confident you can set up and configure them prior to the workshop.
+
+## Setup
+
+I will include more OS-specific instructions tonight. If anyone has
+any problems getting setup for the workshop, please file a bug against
+this project to get my attention and I'll work through it with you. If
+you have problems installing R, RStudio or Emacs / ESS, file a bug
+against this README file. If you have trouble installing the packages,
+file a bug against packages.R.
