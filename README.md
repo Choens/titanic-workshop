@@ -3,28 +3,32 @@
 Instructions and demo code for the Titanic Workshop at the 2015 SUNY
 Albany Open Source Fair.
 
-## Required Setup:
+## Workshop Requirements:
 
-1. Have access to a laptop for personal use during the workshop.
-2. Prior to the OSF, install R on this laptop.
+1. You must have access to a laptop for personal use during the
+   workshop. I don't have extras, sorry.
+2. Prior to the OSF, install R on the aforementioned laptop.
 
     http://cran.r-project.org/
  
-3. Run packages.R to install needed packages. You will need an
-   Internet connection for this script to work. Feel free to just copy
-   paste it into R / RStudio or run it with:
+3. Run packages.R (in this repo) to install several required
+   packages. You will need an Internet connection for this script to
+   work. Feel free to just copy paste it into R / RStudio or run it
+   with:
 
     setwd("path to folder holding packages.R")
     source("packages.R")  
 
-4. Download or clone this repo before coming to the workshop. There
-   will be code examples you will want to have access to. You do not
-   need to know how to use Git to participate in this workshop. You
-   can just download this repo as a ZIP file.
+4. Download or clone this repo to the aforementioned laptop before
+   coming to the workshop. This is workshop, not a demo.
 
-   Note: This repo is NOT yet complete. I expect this to be ready by
-   February 10, 2015. But, not myself, I should probably recommend you
-   do a quick pull to sync with the repo the day of the workshop.
+   There will be code examples you will want to have access to. You
+   do not need to know how to use Git to participate in this
+   workshop. You can just download this repo as a ZIP file.
+
+**WARNING:** This repo is NOT yet complete. I expect this to be ready by
+February 10, 2015. But, not myself, I should probably recommend you do
+a quick pull to sync with the repo the day of the workshop.
 
 ## Recommended Setup:
 
