@@ -26,7 +26,12 @@
 ## =============================================================================
 
 packages <- c(
-    "cluster"        ## Functions for clustering (by Rousseeuw et al.)
+    "Amelia"          ## Amelia II "multiply imputes" missing data in a single
+                      ## cross-section (such as a survey), from a time series
+                      ## (like variables collected for each year in a country),
+                      ## or from a time-series-cross-sectional data set (such
+                      ## as collected by years for each of several countries). 
+    ,"cluster"        ## Functions for clustering (by Rousseeuw et al.)
     ,"dplyr"          ## A grammar of data manipulation. A fast, consistent
                       ## tool for working with data frame like objects, both
                       ## in memory and out of memory.
@@ -129,7 +134,6 @@ if(package_results != 1) {
 
 rm(load_packages)
 rm(package_results)
-
 
 
 ## Package configuration should be placed in config.R.
