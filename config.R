@@ -30,7 +30,7 @@ source("packages.R")
 ## Passwords -------------------------------------------------------------------
 ## Place database or other passwords that are needed, but do not belong in
 ## your analytic repository.
-##source("~/passwords.R")
+if("passwords.R" %in% dir("~")) source("~/passwords.R")
 
 ## Project functions -----------------------------------------------------------
 ## Loads all files ending in .R in the R folder.
