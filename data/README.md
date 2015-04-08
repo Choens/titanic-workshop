@@ -1,13 +1,12 @@
-#+TITLE Data
+# Data
 
-* Files
-** test.csv
+## test.csv
 
 -  Data Source - http://www.kaggle.com/c/titanic-gettingStarted/data
 -  Data Information - Test data for Kaggle Titanic introductory comp.
 -  Saved - 2014-10-15 at 23:35
 
-** train.csv
+## train.csv
 
 -  Data Source - http://www.kaggle.com/c/titanic-gettingStarted/data
 -  Data Information - Training data for Kaggle Titanic introductory
@@ -35,7 +34,7 @@ From Kaggle:
 | embarked | Port of Embarkation               | C = Cherbourg; Q = Queenstown; S = Southampton |
 |          |                                   |                                                |
 
-** SPECIAL NOTES:
+## SPECIAL NOTES:
 
 Pclass is a proxy for socio-economic status (SES)
 
@@ -64,11 +63,11 @@ do not support such relations.
 
 Andy's Additions:
 
-| Variable      | Description                   | Details       |
-|---------------+-------------------------------+---------------|
-| survival_desc | Survival                      | No; Yes       |
-| pclass_desc   | Passenger Class               | 1st; 2nd; 3rd |
-| age_group     | Age Groupings                 |               |
-| fare_group    | Passenger Fare                |               |
-| deck          | The letter portion from cabin |               |
+| Variable       | Description                   | Details       |
+|----------------+-------------------------------+---------------|
+| survival\_desc | Survival                      | No; Yes       |
+| pclass\_desc   | Passenger Class               | 1st; 2nd; 3rd |
+| age\_group     | Age Groupings                 |               |
+| fare\_group    | Passenger Fare                |               |
+| deck           | The letter portion from cabin |               |
 
