@@ -49,12 +49,31 @@ Albany Open Source Fair.
    would like to download packages from. Any PA or New England mirror
    should be fine.
 
+   Alternatively, you can just run the following code, in R, to get
+   everything.
+
+   install.packages("Amelia")
+   install.packages("cluster")
+   install.packages("dplyr")
+   install.packages("ggvis")
+   install.packages("httr")
+   install.packages("pander")
+   install.packages("rmarkdown")
+
+
 4. Download or clone this repo to the aforementioned laptop before
    coming to the workshop. This is workshop, not a demo.
 
-   There will be code examples you will want to have access to. You
-   do not need to know how to use Git to participate in this
-   workshop. You can just download this repo as a ZIP file.
+   Workshop participants will have access to a series of documented
+   .Rmd files. For example, 01-worlds-fastest-introduction-to-r.Rmd,
+   covers the Introduction to R portion of the workshop. These .Rmd
+   files will include most of the code you will see in the
+   presentation and give you something real to work with and use
+   during the workshop. This means you don't have to take endless
+   notes or type like a mad-person. You can listen and think, knowing
+   you've got documented access to all the good stuff.
+
+   We are going to have FUN!
 
 ## Recommended Setup:
 
