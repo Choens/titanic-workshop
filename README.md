@@ -11,6 +11,10 @@ Albany Open Source Festival.
   there would be no reason for anyone to come if they could read
   everything before the conference.
 
+Get your computer setup. The night before the Festival, sync to this
+repo to get the participant materials and get ready to do some
+analysis.
+
 ## Workshop Requirements:
 
 1. You must have access to a laptop for personal use during the
