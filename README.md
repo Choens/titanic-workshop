@@ -1,17 +1,15 @@
 # Titanic Workshop
 
 Instructions and demo code for the Titanic Workshop at the 2015 SUNY
-Albany Open Source Fair.
+Albany Open Source Festival.
 
-**Note:** Workshop materials are a work in progress.
-
-- The packages.R file is finalized, unless someone reports a bug in
-  the code. Workshop participants can use packages.R to install
-  packages that will be needed for the workshop. See below for more
-  details.
-- The presentation and paricipant materials will be finalized by the
-  morning of February 13, 2015. This README will be updated to reflect
-  this updated information at that time.
+- A simplified, finalized, packages.R file has been posted
+  here. Workshop participants should use this script to install
+  packages needed for the workshop.
+- The presentation and paricipant materials will be posted the day
+  before the conference. I was going to post it tonight, but realized
+  there would be no reason for anyone to come if they could read
+  everything before the conference.
 
 ## Workshop Requirements:
 
@@ -44,34 +42,19 @@ Albany Open Source Fair.
     source("packages.R")
 
    If the above code doesn't work or doesn't make sense to you, just
-   copy / paste the CODE from packages.R and paste them into RStudio
-   at the command prompt and let it spin. R may ask you where you
+   copy / paste the CODE from packages.R and paste them into the
+   RStudio command prompt and let it spin. R may ask you where you
    would like to download packages from. Any PA or New England mirror
    should be fine.
-
-   Alternatively, you can just run the following code, in R, to get
-   everything.
-
-   install.packages("Amelia")
-   install.packages("cluster")
-   install.packages("dplyr")
-   install.packages("ggvis")
-   install.packages("httr")
-   install.packages("pander")
-   install.packages("rmarkdown")
-
 
 4. Download or clone this repo to the aforementioned laptop before
    coming to the workshop. This is workshop, not a demo.
 
    Workshop participants will have access to a series of documented
-   .Rmd files. For example, 01-worlds-fastest-introduction-to-r.Rmd,
-   covers the Introduction to R portion of the workshop. These .Rmd
-   files will include most of the code you will see in the
-   presentation and give you something real to work with and use
-   during the workshop. This means you don't have to take endless
-   notes or type like a mad-person. You can listen and think, knowing
-   you've got documented access to all the good stuff.
+   .Rmd files. These files will include most of the code you will see
+   in the presentation and give you something real to work with and
+   use during the workshop. Rather than trying to take notes, you can
+   listen and think, knowing you've got access to all the good stuff.
 
    We are going to have FUN!
 

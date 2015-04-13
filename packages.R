@@ -19,7 +19,11 @@ update.packages(ask=FALSE)
 ## countries).
 install.packages("Amelia")
 
-## Functions for clustering (by Rousseeuw et al.)
+## Misc functions for training and plotting classification and
+## regression models.
+install.packages("caret")
+
+## Functions for clustering (by Rousseeuw et al.).
 install.packages("cluster")
 
 ## A grammar of data manipulation. A fast, consistent tool for working with data
@@ -35,6 +39,10 @@ install.packages("ggvis")
 ## around http verbs (GET(), POST(), etc) with pluggable components to
 ## control the request (authenticate(), add_headers() and so on).
 install.packages("pander")
+
+## Classification and regression based on a forest of trees using
+## random inputs.
+install.packages("randomForest")
 
 ## Convert R Markdown documents into a variety of formats including
 ## HTML, MS Word, PDF, and Beamer.

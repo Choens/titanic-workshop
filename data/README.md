@@ -36,7 +36,7 @@ From Kaggle:
 
 ## SPECIAL NOTES:
 
-Pclass is a proxy for socio-economic status (SES)
+Pclass can be a proxy for socio-economic status (SES)
 
 -  1st ~ Upper;
 -  2nd ~ Middle;
