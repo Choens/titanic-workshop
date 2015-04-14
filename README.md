@@ -24,14 +24,16 @@ analysis.
 
    To install R on Ubuntu more easily (I assume you are CLI friendly):
 
-    sudo apt-get install \
-      build-essential \
-      libcurl4-openssl-dev \
-      r-base-dev \
-      r-base-html \
-      r-doc-html \
-      r-doc-info \
-      r-recommended
+```
+sudo apt-get install \
+    build-essential \
+    libcurl4-openssl-dev \
+    r-base-dev \
+    r-base-html \
+    r-doc-html \
+    r-doc-info \
+    r-recommended
+```
 
    Linux users will need to install some basic dev packages. On
    Windows, R installs binaries by default. On Linux install.packages()
@@ -42,8 +44,10 @@ analysis.
    work. Feel free to just copy paste it into R / RStudio or run it
    with:
 
-    setwd("full/path/to/folder/holding/packages.R")
-    source("packages.R")
+```
+setwd("full/path/to/folder/holding/packages.R")
+source("packages.R")
+```
 
    If the above code doesn't work or doesn't make sense to you, just
    copy / paste the CODE from packages.R and paste them into the
