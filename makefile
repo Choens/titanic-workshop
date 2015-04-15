@@ -14,7 +14,7 @@ guide-03: guide-03-projection.Rmd
 
 guides: guide-01 guide-02 guide-03
 
-presentations: pres-00 pres-01 pres-02 pres03
+presentations: pres-00 pres-01 pres-02 pres-03
 
 pres-00: presentation-00-about.Rmd
 	Rscript -e 'rmarkdown::render("presentation-00-about.Rmd")'
