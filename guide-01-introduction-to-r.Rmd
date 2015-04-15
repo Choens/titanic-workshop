@@ -20,7 +20,7 @@ According to Wikipedia R is:
 - It is the lingua franca of data analysis.
 - You can learn more at Wikipedia.
 
-# A Titanic Introductio to R
+# A Titanic Introduction to R
 
 - Take a deep breath. In the next 20 minutes or so, many of you are
   going to go from 0 to 60.

@@ -29,7 +29,7 @@ According to Wikipedia R is:
 
 </div>
 
-# A Titanic Introductio to R
+# A Titanic Introduction to R
 
 <img src="graphics/titanic-cobh-harbour-1912.jpg" width=75%>
 
