@@ -1,0 +1,228 @@
+---
+title: "A Titanic Introduction to R"
+author: "Andy Choens, MSW"
+output: html_document
+---
+
+## Why Are We Using R?
+
+According to Wikipedia R is:
+
+- An implementation *(copy)* of S.
+- A language that uses lexical *(static)* scoping.
+- An interpreted *(kinda pokey)* language for statistical analysis.
+- Widely used by statisticians, data miners for data analysis.
+- Getting more popular every year.
+
+[Wikipedia: R Programming Language](https://en.wikipedia.org/wiki/R_%28programming_language%29)
+
+- It is a powerful, popular tool.
+- It is the lingua franca of data analysis.
+- You can learn more at Wikipedia.
+
+# A Titanic Introductio to R
+
+- Take a deep breath. In the next 20 minutes or so, many of you are
+  going to go from 0 to 60.
+
+## Goals
+
+- How to start R.
+- Basic R semantics, structure, etc.
+- The working directory.
+- Listing files.
+- Importing some data.
+- How to write a function. 
+
+## How to start R varies by OS / Tool
+
+RStudio
+:   Click on the icon.
+
+Emacs ESS
+:   Start Emacs, Press M-x R.
+:   Or open a file with R code and try to run it.
+
+# Time For Some Actual R Code
+
+## Code Examples
+
+```{r echo=TRUE, eval=FALSE}
+
+> x <- c(1,2,3,4,5,6)         ## Create ordered collection (vector).
+
+> y <- x^2                    ## Square the elements of x.
+
+> print(y)                    ## Print (vector) y.
+[1]  1  4  9 16 25 36
+
+> mean(y)                     ## Calculate average (arithmetic mean) of (vector) y; result is scalar.
+[1] 15.16667
+
+> var(y)                       ## Calculate sample variance.
+[1] 178.9667
+
+```
+
+Note: All example code shamelessly "borrowed" from
+[Wikipedia](https://en.wikipedia.org/wiki/R_%28programming_language%29).
+
+## Code Examples: Continued
+
+```{r echo=TRUE, eval=FALSE}
+
+> lm_1 <- lm(y ~ x)           ## Fit a linear regression model "y = f(x)" or "y = B0 + (B1 * x)".
+                              ## Store the results as lm_1.
+                               
+> print(lm_1)                 ## Print the model from the (linear model object) lm_1.
+ 
+Call:
+lm(formula = y ~ x)
+ 
+Coefficients:
+(Intercept)            x
+-9.333        7.000
+
+```
+
+Note: All example code shamelessly "borrowed" from
+[Wikipedia](https://en.wikipedia.org/wiki/R_%28programming_language%29).
+
+- For many users, R is a weird mix of the functional and object
+oriented paradigms.
+- If there are any LISP fans in the audience, you will feel right at
+  home, once you get used to not typing endless parentheses.
+- EVERYTHING is an object. EVERYTHING.
+- Data, functions, etc. You can pass a function to a function as a
+variable.
+- Rather than create objects that have functions, R treats everything
+  as an object, incuding functions. Functions, as objects, can inherit
+  aspects of parent functions, thus you can have a function like
+  length() which tells how how long a 1-dimensional object is. It has
+  . . . more or less . . .  child functions that know how to deal with
+  different types of one-dimensional objects. Yeah.
+
+## Get Help
+
+You can always get help:
+
+- Prepend the name of a function with a single: '?'.
+- Type in the name of a function, but not putting in the parentheses.
+
+```{r echo=TRUE, eval=FALSE}
+
+?read.csv   ## This is generally the best and easiest way to get help.
+
+read.csv    ## This is generally an accident, but it is also a learning opportunity.
+
+```
+
+# Where Are We? (Important)
+
+## Working Directory
+
+- Like most programming languages, R has a working directory.
+- Because we want to interact with files outside of R, this is VERY important.
+
+#### Displays current working directory:
+
+```{r echo=TRUE}
+
+getwd()
+
+```
+
+#### Sets current working directory:
+
+
+```{r echo=TRUE, eval=FALSE}
+
+setwd("/home/andy/my-funky-repo")
+
+```
+
+## Working Directory Continued
+
+You do not have to set this manually!
+
+- If you use RStudio, you can create projects and define the default
+  working directory for each project.
+- If you start an R script in Emacs ESS, it will ask you where to
+  start R, defaulting to the directory holding the script.
+- You should set your working directory to the root directory of the
+  Git repo, titanic-workshop.
+
+# Getting Stuff Into R!
+
+## See Files
+
+- For today's purposes, paths can be assumed to be relative to the
+  working directory.
+
+```{r echo=TRUE, eval=TRUE}
+
+## Files in current working directory.
+dir()
+
+```
+
+```{r echo=TRUE}
+
+## Files in the data directory.
+dir("data")
+
+```
+
+## Import / View Data
+
+```{r echo=TRUE}
+
+train <- read.csv("data/train.csv", as.is=TRUE)   ## Imports CSV data into R.
+
+
+str(train)   ## Compactly display the structure of an arbitrary R object.
+
+
+View(train)   ## Will open as a seaparate window, unless you are using RStudio.
+              ## If you are using RStudio, it will open the data in the IDE.
+
+```
+
+# How To Write A Function
+
+## Our First R Function
+
+```{r echo=FALSE, results="asis"}
+
+#' read.train
+#' Imports the Titanic training data set.
+#'
+#' @return df A dataframe containing the imported dataset.
+#'
+read.train <- function( ) {
+    ## Test to make sure there is something to import.
+    if("train.csv" %in% dir("data")) {
+        ## Imports the CSV data.
+        df <- read.csv("data/train.csv")
+        ## All the col names are lower case!
+        names(df) <- tolower(names(df))
+        ## Simplifies the name col
+        df$name = as.character(df$name)
+        return(df)
+    } else {
+        ## Stops us if R can't find the data.
+        stop("Unable to locate train data set.")
+    }
+}   ## read.train
+
+```
+
+## Congratulations
+
+- You are now a certifiable expert in R.
+- Now it is time to get our analysis on.
+
+# Questions?
+
+<img src="graphics/titanic-cobh-harbour-1912.jpg" width=75%>
+

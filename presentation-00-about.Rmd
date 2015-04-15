@@ -1,0 +1,69 @@
+---
+title: "Titanic Workshop"
+subtitle: "Who lives? Who dies? Predictive Analytics Using R"
+author: "Andy Choens, MSW"
+output:
+  ioslides_presentation:
+    widescreen: true
+    logo: "graphics/titanic.jpg"
+---
+
+## Goals
+
+- **Learn how to think like an analyst!**
+- Learn a little about to predictive modeling.
+- Get your feet wet using R, Rmarkdown, etc.
+
+## Disclaimers
+
+- This is not a substitute for an real statistics course.
+- Correlation DOES *NOT* imply causation.
+
+<div class="notes">
+
+- I have a degree in Social Welfare.
+- Just saying.
+
+</div>
+
+## How Is This Going To Work?
+
+- If you aren't a programmer. Find a buddy who is.
+- You did clone the repo, right?
+- Presentations v. Guides
+- Stop me when you have a question. Don't wait. Throw a tomatoe at me.
+
+<div class="notes">
+
+- Although this is an introduction to the R programming language, this
+  is NOT an introduction to programming. If this is your first rodeo,
+  find a friend.
+- When you clone the repo, you get two series of files:
+    - presentation-xx
+    - guide-xx
+
+    My slides are in the presentation-xx files. These are .Rmd files
+    compiled to html. You want to open the guide-xx files. These .Rmd
+    files have been simplified, but contain basically the same code as
+    my presentation slides.
+
+- Think of it like a starter kit.
+
+</div>
+
+## Acknowedgements
+
+- [Kaggle's "Titanic: Machine Learning From Disaster"](http://www.kaggle.com/c/titanic-gettingStarted)
+- The Association for Information Science and Technology (ASIS&T)
+
+<div class="notes">
+
+- I based this workshop on a data set and "trainer" contest that
+  Kaggle hosts to introduce people to machine learning.
+- Today, we are not going to build the best model Kaggle has ever
+  seen, but we are going to build a real, valid model, and hopefully
+  you will understand why we make the choices we do make.
+- You can use what we do today as a starting point to build a better
+  model. Trust me, our models today can be improved upon.
+
+</div>
