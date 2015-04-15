@@ -476,6 +476,7 @@ write.csv(model.logit
 - Random Forest
 - Adding More Data Elements
 - More Time For The Presentation
+- [Kaggle: Getting Started With R](http://www.kaggle.com/c/titanic-gettingStarted/details/new-getting-started-with-r)
 
 # Be Careful.
 
