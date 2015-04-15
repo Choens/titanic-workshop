@@ -3,7 +3,6 @@ title: "A Titanic Introduction to R"
 author: "Andy Choens, MSW"
 output:
   ioslides_presentation:
-    widescreen: true
     logo: "graphics/titanic.jpg"
 ---
 

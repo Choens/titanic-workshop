@@ -4,7 +4,6 @@ subtitle: "Who lives? Who dies? Predictive Analytics Using R"
 author: "Andy Choens, MSW"
 output:
   ioslides_presentation:
-    widescreen: true
     logo: "graphics/titanic.jpg"
 ---
 
