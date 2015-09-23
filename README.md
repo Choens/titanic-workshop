@@ -1,28 +1,16 @@
-# Titanic Workshop
+# Titanic Introduction to R
 
-Instructions and demo code for the Titanic Workshop at the 2015 SUNY
-Albany Open Source Festival.
-
-- A simplified, finalized, packages.R file has been posted
-  here. Workshop participants should use this script to install
-  packages needed for the workshop.
-- The presentation and paricipant materials will be posted the day
-  before the conference. I was going to post it tonight, but realized
-  there would be no reason for anyone to come if they could read
-  everything before the conference.
-
-Get your computer setup. The night before the Festival, sync to this
-repo to get the participant materials and get ready to do some
-analysis.
+USes the Kaggle Titanic dat set to introduce professional and student
+researchers to the R programming language.
 
 ## Workshop Requirements:
 
-1. You must have access to a laptop for personal use during the
-   workshop. Unfortunately, I don't have any extras.
-2. Prior to the OSF, install R on the aforementioned laptop. Binaries
-   can be downloaded from: http://cran.r-project.org/
+1. You must have access to a computer during the workshop.
+2. Please install R on the aforementioned computer prior to the
+   workshop. Pre-compiled binaries for Windows and Mac OS X can be
+   downloaded from: http://cran.r-project.org/
 
-   To install R on Ubuntu more easily (I assume you are CLI friendly):
+   To install R on Debian / Ubuntu: (I assume you are CLI friendly):
 
 ```
 sudo apt-get install \
@@ -35,25 +23,18 @@ sudo apt-get install \
     r-recommended
 ```
 
-   Linux users will need to install some basic dev packages. On
-   Windows, R installs binaries by default. On Linux install.packages()
-   downloads the source code and compiles locally.
-
-3. Run the packages.R file (in this repo) to install several required
-   packages. You will need an Internet connection for this script to
-   work. Feel free to just copy paste it into R / RStudio or run it
-   with:
+   Fans of Fedora (and other Red Hat clones / derivatives) should use the
+   following code.
 
 ```
-setwd("full/path/to/folder/holding/packages.R")
-source("packages.R")
+sudo dnf install \
+    R \
+    R-java \
+    R-RODBC
 ```
 
-   If the above code doesn't work or doesn't make sense to you, just
-   copy / paste the CODE from packages.R and paste them into the
-   RStudio command prompt and let it spin. R may ask you where you
-   would like to download packages from. Any PA or New England mirror
-   should be fine.
+   If anyone would like to contribute instructions for SUSE or any
+   other Linux or BSD derivative, I'll post them here.
 
 4. Download or clone this repo to the aforementioned laptop before
    coming to the workshop. This is workshop, not a demo.
