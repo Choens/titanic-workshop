@@ -1,0 +1,104 @@
+---
+title: "A Titanic Intro To R"
+author: "Andy Choens, MSW"
+subtitle: About Today's Workshop
+output:
+  ioslides_presentation:
+    logo: "graphics/titanic.jpg"
+---
+
+## Today's Goals
+
+- Spend some time thinking like an analyst.
+- Learn a little R.
+
+## About Today
+
+- R is a programming language. (We are going to program.)
+- This is a workshop. Not a lecture.
+    - ~~I get bored listening to me too.~~
+    - To learn, *YOU* need to write some code.
+- Each presentation is accompanied by a workbook.
+- TODO When you see this guy, we are going to stop and let you do some coding.
+- Stop me when you have a question.
+    - Please throw tomatoes.
+    - ~~I married an Italian.~~ I'm used to it.
+
+<div class="notes">
+
+- Notes to self.
+
+</div>
+
+## What Is R?
+
+According to Wikipedia, R is:
+
+- An implementation *(copy)* of S.
+- A language that uses lexical *(static)* scoping.
+- An interpreted *(kinda pokey)* language for statistical analysis.
+- Widely used by statisticians, data miners for data analysis.
+- Getting more popular every year.
+
+<br/>
+
+[Wikipedia: R Programming Language](https://en.wikipedia.org/wiki/R_%28programming_language%29)
+
+
+<div class="notes">
+
+- It is a powerful, popular tool.
+- It is the lingua franca of data analysis.
+- You can learn more at Wikipedia.
+
+</div>
+
+## Why Learn R?
+
+- I have an entire presenation about that.
+- You must have at least one reason. You're here today.
+- Integration!
+- Free and Open Source Software (FOSS)
+- Four Freedoms
+
+## Four Freedoms of Free Software
+
+- **Freedom 0:** The freedom to run the program for any purpose.
+- **Freedom 1:** The freedom to study how the program works, and change it to make it do what you wish.
+- **Freedom 2:** The freedom to redistribute copies so you can help your neighbor.
+- **Freedom 3:** The freedom to improve the program, and release your improvements (and modified versions in general) to the public, so that the whole community benefits.
+
+## Research Freedom
+
+- *Is R a great technology?* Yes.
+- *Do I use it for that reason alone?* No.
+- R is part of a larger ecosystem which is redefining how research can
+  and should be done.
+
+## Reproducibility Crisis
+
+- TODO - Could we address some portion of the reproducibility crisis
+  with an approach to science that mirrors the Four Freedoms?
+
+## Acknowedgements
+
+- [Kaggle's "Titanic: Machine Learning From Disaster"](http://www.kaggle.com/c/titanic-gettingStarted)
+- The Association for Information Science and Technology (ASIS&T)
+
+<div class="notes">
+
+- I based this workshop on a data set and "trainer" contest that
+  Kaggle hosts to introduce people to machine learning.
+- Today, we are not going to build the best model Kaggle has ever
+  seen, but we are going to build a real, valid model, and hopefully
+  you will understand why we make the choices we do make.
+- You can use what we do today as a starting point to build a better
+  model. Trust me, our models today can be improved upon.
+
+</div>
+ 
+## NEXT
+
+- Let's Do Some R
+- *AND* Sink A *(Titanic)* Boat.
+- Open up Workbook 01-TODO
