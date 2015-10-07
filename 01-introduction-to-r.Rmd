@@ -262,7 +262,7 @@ Returns:
 
 ```{r NUMERICS-ARE-SAFER-1, echo=TRUE,eval=FALSE,purl=TRUE,results="hide"}
 
-## Question: What is the assigned value of foo?
+## Question: What is the assigned value of port?
 port <- as.integer(10)
 port
 
@@ -274,7 +274,7 @@ Answer:
 
 ```{r NUMERICS-ARE-SAFER-2, echo=TRUE,eval=FALSE,purl=TRUE,results="hide"}
 
-## Question: What is the assigned value of foo?
+## Question: What is the assigned value of port?
 port <- as.integer(3.14159)
 port
 
@@ -290,7 +290,7 @@ Answer:
 
 ```{r NUMERICS-ARE-SAFER-3, echo=TRUE,eval=FALSE,purl=TRUE,results="hide"}
 
-## Question: What is the assigned value of foo?
+## Question: What is the assigned value of port?
 port <- 3.3 * 4
 port
 
@@ -302,7 +302,7 @@ Answer:
 
 ```{r NUMERICS-ARE-SAFER-4, echo=TRUE,eval=FALSE,purl=TRUE,results="hide"}
 
-## Question: What is the assigned value of foo?
+## Question: What is the assigned value of port?
 port <- as.integer(3.3) * 3
 port
 
