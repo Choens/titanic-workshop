@@ -1,7 +1,6 @@
 ---
 title: "A Titanic Introduction to R"
 subtitle: "Let's Get Started!"
-author: "Andy Choens, MSW"
 output:
   ioslides_presentation:
     widescreen: TRUE
@@ -34,11 +33,14 @@ output:
 ## - Atomic Data Types
 ## - Vectors
 
-## The slides for this presentation can be gotten at: 
+## The slides for this presentation can be gotten at:
+## https://choens.github.io/titanic-workshop/01-introduction-to-r.html
 
 ```
 
 # First Steps In R
+
+<img src="img/titanic-cobh-harbour-1912.jpg" width=75% style="display:block;margin-left:auto;margin-right:auto">
 
 ## To Start RStudio
 
@@ -109,7 +111,7 @@ output:
 ```{r AN-OVERLY-COMPLICATED-CALCULATOR, eval=TRUE,echo=TRUE,purl=TRUE,results="hide"}
 
 ## You can use R as an over-powered calculator.
-## Type the following into the REPL console or run them from the 
+## Type the following into the REPL console or run them from the
 ## 01-introduction-to-r.R script.
 
 1 + 1
@@ -171,7 +173,7 @@ Returns:
 
 ```{r PRACTICE-ASSIGNMENT-OPERATOR, echo=TRUE,eval=TRUE,purl=TRUE}
 
-## Create a variable "sank" and give it a value of "1912". 
+## Create a variable "sank" and give it a value of "1912".
 
 ## Replace this comment with some code.
 ```
@@ -186,6 +188,8 @@ Correct Answers: *(No Peeking!)*
 
 # Atomic Data Types
 
+<img src="img/titanic-cobh-harbour-1912.jpg" width=75% style="display:block;margin-left:auto;margin-right:auto">
+
 ## Atomic Data Types - Numeric
 
 - R has extensive support for different types of numbers.
@@ -199,7 +203,7 @@ Correct Answers: *(No Peeking!)*
 pi <- 3.14159
 
 ## We can confirm this:
-typeof(pi)          ## This is a function we will use again. 
+typeof(pi)          ## This is a function we will use again.
 
 ```
 
@@ -321,7 +325,7 @@ do integer math, even when you don't want it to.
 - Don't look like this guy.
 
 <img src="img/gilligan.jpg" height=250px>
-   
+
 ## Atomic Data Types - LOGICAL {.smaller}
 
 ```{r ATOMIC-DATA-TYPES-LOGICAL-LTE, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
@@ -448,6 +452,10 @@ Example Answers:
 >- `my_age <- 36`
 >- `a_day < today` which returns: `[1] TRUE`
 >- There are, obviously, other possible answers.
+
+# Vectors
+
+<img src="img/titanic-cobh-harbour-1912.jpg" width=75% style="display:block;margin-left:auto;margin-right:auto">
 
 ## Vectors
 
@@ -619,7 +627,7 @@ Discussion:
 ##    you went to highschool into this vector.
 ##    "Numeric" integers are fine for this. You don't need dates.
 ##    If you need help, try this:
-##    ?c 
+##    ?c
 
 ## 2: Use an index and a greater than or less than boolean operator
 ##    to return the last three years you went to highschool.

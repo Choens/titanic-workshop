@@ -1,19 +1,26 @@
 ---
-title: "Index"
+title: "Titanic Introduction to R - HOME"
 output:
   html_document:
-    theme: readablex
+    theme: readable
 ---
+
+<img src="img/titanic-cobh-harbour-1912.jpg" width=75% style="display:block;margin-left:auto;margin-right:auto">
 
 # Presentations
 
-- <a href="https://choens.github.io/titanic-workshop/00-about.html">00: About</a>
-- <a href="https://choens.github.io/titanic-workshop/01-introduction-to-r.html">01: Introduction To R</a>
+- <a href="https://choens.github.io/titanic-workshop/00-about.html" target="_blank">00: About</a>
+- <a href="https://choens.github.io/titanic-workshop/01-introduction-to-r.html" target="_blank">01: Introduction To R</a>
+- 02:
+- 03:
+- 04:
 
-# Participant Materials
+# Participant Resources
 
-- There will be something here soon.
+- TODO - Link to participant materials.
+- TODO - Link to Google Form for Feedback
 
 # Other Helpful Resources
 
-- Yes. Resources.
+- StackOverflow
+- Quick-R

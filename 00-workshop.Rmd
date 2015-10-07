@@ -1,6 +1,5 @@
 ---
 title: "A Titanic Intro To R"
-author: "Andy Choens, MSW"
 subtitle: "About Today's Workshop"
 output:
   ioslides_presentation:
@@ -16,7 +15,7 @@ output:
 - Data Munging
 - Exploratory Data Analysis
 - Statistical Tests
-    - Student's T-Test 
+    - Student's T-Test
     - Chi Square
 - Prediction
     - Logistic Regression
@@ -128,10 +127,10 @@ TODO - Table with logos~
   members to machine learning.
 - I also owe a big thanks to the folks at Data Carpentry who I stole
   liberally from.
-- R Ecology workshop. 
+- R Ecology workshop.
 
 </div>
- 
+
 ## NEXT
 
 - Let's Do Some R!

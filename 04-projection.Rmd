@@ -1,0 +1,559 @@
+---
+title: "A Titanic Projection"
+author: "Andy Choens, MSW"
+output:
+  ioslides_presentation:
+    logo: "img/titanic.jpg"
+---
+
+```{r init, echo=FALSE, results="none", message=FALSE}
+
+## Load some packages, while we're busy., but dno't display.
+library(dplyr)
+library(ggvis)
+library(pander)
+
+```
+
+# Learning Objectives
+
+- I dunno. What the hell are we doing here?
+
+# What Is A Predictive Model?
+
+<img src="img/titanic-bow.jpg" width=35%>
+
+<div class="notes">
+
+- Wikipedia: Predictive modelling leverages statistics to predict
+  outcomes. Most often the event one wants to predict is in the
+  future, but predictive modelling can be applied to any type of
+  unknown event, regardless of when it occurred.
+- Do we know enough now to build a simple predictive model? 
+
+</div>
+
+## Our Projections
+
+- Will use train.csv to predict survival in test.csv.
+- I don't have the actual answers.
+- When I say a projection is correct xx% of the time, I am just repeating what
+  Kaggle told me.
+
+- Feel free to get a Kaggle account, use this code, and out-score me.
+- The model we will build today will be OK . . . ish.
+- I promise, you can improve it.
+- I will give you some links at the end for further reading.
+
+##  All models are wrong, but some are useful
+
+- Statistician George E P Box in "Science and statistics", Journal of the American Statistical
+  Association 71:791-799
+
+- Two Types of Error
+
+    - False Positive (we let someone live who should have died)
+    - False Negative (we kill someone who should have lived)
+
+- Both types of errors negatively affect our models.
+- Because this is a binary outcome, these are the only types of errors
+  we can make.
+
+## Import Data
+
+- This time we need both data sets.
+```{r import-data, echo=TRUE, results="raw", message=FALSE}
+
+## Import our functions.
+source("R/read.train.R")
+source("R/read.test.R")
+
+## Import our data.
+train <- read.train()
+test  <- read.test()
+
+```
+
+<br/>
+*
+
+> - How can we look to make sure our data imported correctly?
+
+## What's In The Test Data Set? {.smaller}
+
+```{r test-explore, echo=TRUE, results="raw"}
+
+## What happened to survived?
+str(test)
+
+## We must have 418 rows of data or Kaggle will reject our submissions.
+dim(test)
+
+```
+
+# Time To Build Some Models!
+
+<img src="img/titanic-bow.jpg" width=35%>
+
+## Model 1 - Everyone Lives!
+
+- We know 62% of the passengers died.
+- But what will happen if we assume everyone lives?
+
+```{r everyone-lives, echo=TRUE, results="asis", message=FALSE}
+
+library(dplyr)
+
+## Possibly the world's worst Titanic model.
+model.stupid = test %>% select(passengerid) %>% mutate(survived=1)
+write.csv(model.stupid, file = "model-stupid.csv", row.names=FALSE)
+
+```
+<br/>
+*
+
+> - Model Stupid earned me a score of 2332 on the leader board (of 2335).
+> - My model was a correct only 37 percent of the time.
+> - [Model Data](./model-stupid.csv)
+
+<div class="notes">
+
+- Somehow, two people scored worse than I did. Impressive.
+
+</div>
+
+# Is This Model Useful?
+
+<img src="img/captain-smith.jpg" width=25%>
+
+## Model 2 - Everyone Dies!
+
+- Surely this will work out better. . . for us.
+
+```{r everyone-dies, echo=TRUE, results="asis", message=FALSE}
+
+## This just can't be as bad. It just can't be.
+model.everyone.dies = test %>% select(passengerid) %>% mutate(survived=0)
+write.csv(model.everyone.dies, file = "model-everyone-dies.csv", row.names=FALSE)
+
+```
+
+## Model 2 - Everyone Dies! Continued
+
+- This model bumped us up 36 positions on the leaderboard.
+- We are now sitting in position 2,295.
+- The model is correct 62.679 percent of the time.
+- Drinks are on me, if you are old enough to drink.
+- [Model Data](./model-everyone-dies.csv)
+
+# Is This Model Useful?
+
+<img src="img/captain-smith.jpg" width=25%>
+
+<div class="notes">
+
+- The first model was just a joke.
+- But this was a real model.
+- We knew most people died, so we created a simple model that
+  projected everyone died.
+- It is wrong. Not everyone died, but it was based on real information
+  and was a genuine simplification of our actual data.
+- In other words - it was actually a mode (albeit a poor one).
+  
+</div>
+
+## Women and Children First!
+
+- We know 74% of women survived.
+- We know children under the age of 15 were more likely to survive.
+- Could it really be this easy to improve our score?
+
+```{r women-and-children-first, echo=TRUE, results="asis"}
+
+## It certainly looks more sophisticated.
+model.women.and.children.first = test %>%
+    mutate( survived = ifelse( sex == "female" | age < 15, 1, 0 ) )
+
+```
+
+```{r women-and-children-first-view, echo=TRUE, eval=FALSE, results="asis"}
+
+## Just make sure it looks good.
+View(model.women.and.children.first)
+
+```
+
+## Women and Children First! Continued {.smaller}
+
+- Did you notice the NAs?
+
+```{r women-and-children-first-na, echo=TRUE, results="asis"}
+
+model.women.and.children.first$survived[ is.na(model.women.and.children.first$survived) ] <- 0
+
+```
+
+- It is a more sophisticated model, it took two steps to build.
+- But is it BETTER?
+
+```{r women-and-children-first-write, echo=TRUE, results="asis"}
+
+write.csv(model.women.and.children.first[,c("passengerid", "survived")]
+         ,file = "model-women-and-children-first.csv"
+         ,row.names=FALSE
+          )
+
+```
+
+## Women and Children First! Continued
+
+- YES!
+- Our score is now 1,984.
+- We moved up in the leader board by 13%!
+- The model is now correct 76.077 percent of the time.
+
+# When is a model is useful enough?
+
+<img src="img/captain-smith.jpg" width=25%>
+
+## So, What Limits A Model?
+
+- We could keep refining this process, but it would eventually become
+  very complex, and there are better ways to build models.
+- Modeling Options
+    - Regression (Logistic)
+    - Machine Learning
+    - Use more of the data.
+- We really need to improve the data.
+    - Who else is SICK TO DEATH of NA?
+    - We need to improve the utility of what we have.
+
+# Data Cleanup
+
+<img src="img/titanic-bow.jpg" width=35%>
+
+## How Often Is Age Missing? {.smaller}
+
+<div style="display:inline-block; margin:1 auto; float:left; width:48%; text-align: left;">
+
+```{r train-na-age-count, echo=TRUE, results="asis"}
+
+na.train <- train %>%
+    summarize(
+        "N NA" = sum(is.na(age))
+       ,"Total Rows" = n()
+       ,"% Missing" = round( 100.0 * sum(is.na(age)) / n(), 1 )
+    )
+
+pander(na.train)
+```
+
+</div>
+
+<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+
+```{r test-na-age-count, echo=TRUE, results="asis"}
+
+na.test <- test %>%
+    summarize(
+        "N NA" = sum(is.na(age))
+       ,"Total Rows" = n()
+       ,"% Missing" = round( 100.0 * sum(is.na(age)) / n(), 1 )
+    )
+
+pander(na.test)
+```
+
+</div>
+
+## Why Do We Care?
+
+- Some of these missing values could be kids, and we know they are
+  more likely to live.
+- More advanced modeling techniques like logistic regression and random
+  forest don't deal well with missing data.
+
+## So Long NA, We Hardly Knew Ye!
+
+- We need something else to tell us something about their age.
+- What about their name?
+
+<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+
+```{r train-names-where-age-na-show, echo=TRUE, eval=FALSE}
+
+train$name[ is.na(train$age) ]
+
+```
+
+```{r train-names-where-age-na-actual, echo=FALSE, results="asis"}
+
+head( train$name[is.na(train$age) ] )
+
+```
+
+</div>
+
+<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+
+```{r test-names-where-age-na-show, echo=TRUE, eval=FALSE}
+
+test$name[ is.na(test$age) ]
+
+```
+
+```{r test-names-where-age-na-actual, echo=FALSE, results="asis"}
+
+head( test$name[ is.na(test$age) ] )
+
+```
+</div>
+
+## So Long NA, We Hardly Knew Ye! Continued
+
+- Take a look at the data.
+- What do you see?
+
+## So Long NA, We Hardly Knew Ye! Continued
+
+- They record a title with nearly EVERY name.
+- Does this help us?
+
+```{r impute-ages, echo=TRUE, results="raw"}
+
+age.dr  <- mean(train$age[ grepl("Dr.",     train$name) ], na.rm=TRUE)
+age.mr  <- mean(train$age[ grepl("Mr.",     train$name) ], na.rm=TRUE)
+age.ms  <- mean(train$age[ grepl("Ms.",     train$name) ], na.rm=TRUE)
+age.mrs <- mean(train$age[ grepl("Mrs.",    train$name) ], na.rm=TRUE)
+age.mis <- mean(train$age[ grepl("Miss.",   train$name) ], na.rm=TRUE)
+age.mas <- mean(train$age[ grepl("Master.", train$name) ], na.rm=TRUE)
+
+```
+
+## So Long NA, We Hardly Knew Ye! Continued
+
+```{r impute-ages-show, echo=TRUE, results="raw"}
+
+age.mr
+
+age.mrs
+
+age.mis
+
+age.mas
+
+```
+
+## So Long NA, We Hardly Knew Ye! Continued
+
+- This should get rid of the missing ages.
+- And it could help us ID a few more young people.
+
+```{r impute-ages-record, echo=TRUE, results="raw"}
+
+train$age[ grepl("Dr.",     train$name) & is.na(train$age) ] <- age.dr   
+train$age[ grepl("Mr.",     train$name) & is.na(train$age) ] <- age.mr   
+train$age[ grepl("Ms.",     train$name) & is.na(train$age) ] <- age.ms
+train$age[ grepl("Mrs.",    train$name) & is.na(train$age) ] <- age.mrs
+train$age[ grepl("Miss.",   train$name) & is.na(train$age) ] <- age.mis
+train$age[ grepl("Master.", train$name) & is.na(train$age) ] <- age.mas
+
+test$age[ grepl("Dr.",     test$name) & is.na(test$age) ] <- age.dr   
+test$age[ grepl("Mr.",     test$name) & is.na(test$age) ] <- age.mr
+test$age[ grepl("Ms.",    test$name) & is.na(test$age) ] <- age.ms
+test$age[ grepl("Mrs.",    test$name) & is.na(test$age) ] <- age.mrs
+test$age[ grepl("Miss.",   test$name) & is.na(test$age) ] <- age.mis
+test$age[ grepl("Master.", test$name) & is.na(test$age) ] <- age.mas
+
+```
+
+## So Long NA, We Hardly Knew Ye! Continued
+
+- Victory!
+
+<div style="display:inline-block; margin:1 auto; float:left; width:48%; text-align: left;">
+
+```{r train-na-age-count-2, echo=TRUE, results="asis"}
+
+na.train <- train %>%
+    summarize(
+        "N NA" = sum(is.na(age))
+       ,"Total Rows" = n()
+       ,"% Missing" = round( 100.0 * sum(is.na(age)) / n(), 1 )
+    )
+
+pander(na.train)
+```
+
+</div>
+
+<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+
+```{r test-na-age-count-2, echo=TRUE, results="asis"}
+
+na.test <- test %>%
+    summarize(
+        "N NA" = sum(is.na(age))
+       ,"Total Rows" = n()
+       ,"% Missing" = round( 100.0 * sum(is.na(age)) / n(), 1 )
+    )
+
+pander(na.test)
+```
+
+</div>
+
+## Women and Children First! (Round 2)
+
+- We still know 74% of women survived.
+- We still know children under the age of 15 were more likely to
+  survive (and now we know about a few more of them).
+- How much will improve the accuracy of our model?
+- The fundamentals of the model won't change. Just our data. 
+
+```{r women-and-children-first-2, echo=TRUE, results="asis"}
+
+## It certainly looks more sophisticated.
+model.women.and.children.first.2 = test %>%
+    mutate( survived = ifelse( sex == "female" | age < 15, 1, 0 ) )
+
+```
+
+```{r women-and-children-first-view-2, echo=TRUE, eval=FALSE, results="asis"}
+
+## Just make sure it looks good.
+View(model.women.and.children.first.2)
+
+```
+
+- It is a more sophisticated model, it took two steps to build.
+- But is it BETTER?
+
+```{r women-and-children-first-write-2, echo=TRUE, results="asis"}
+
+write.csv(model.women.and.children.first.2[,c("passengerid", "survived")]
+         ,file = "model-women-and-children-first-2.csv"
+         ,row.names=FALSE
+          )
+
+```
+
+## Women and Children First! (Round 2) Continued
+
+- Disappointment.
+- It did not improve the model.
+- We only identified an additional 4 young boys in the test data set.
+- Not enough to make a difference.
+
+## First Logistic Regression
+
+- Improved data did not help us with our primitive "logic model", but
+  it does make it possible for us to apply logistic regression.
+- By default, logistic regression will return NA when there are
+  missing variables, and we must have a 1 or 0 for all passengers or
+  Kaggle will reject the submission.
+- Logistic is similar to linear regression, but it is used for
+  situations where the outcome is binary, like what we have here.
+  
+```{r first-logit, echo=TRUE, results="raw"}
+
+## Logistic Regression Time.
+## This one is super simple.
+model.logit <- glm( survived ~ sex + age, family = binomial, data = train )
+summary( model.logit )
+
+
+```
+
+<div class="notes">
+
+- This tells us that our model is working, but it isn't doing as well
+  as I would like.
+- Age is simply not as useful as gender.
+  
+</div>
+
+## First Logistic Regression: Continued
+
+```{r first-logit-write, echo=TRUE, results="asis"}
+
+survived <-
+    predict.glm(model.logit
+                ,newdata = test
+                ,type = "response"
+               )
+
+survived <- ifelse(survived >= .5, 1, 0)
+
+## OK! I give up!
+model.logit <- cbind(passengerid = test$passengerid, survived = survived)
+
+write.csv(model.logit
+          ,file = "model-logit1.csv"
+          ,row.names=FALSE
+         )
+
+
+```
+
+## First Logistic Regression: Continued
+
+- Although it only improved the accuracy minutes (it is now 76.55%
+  accurate), we went up 43 steps on the leader board.
+- Sitting pretty at 1956.
+- We have come a long way.
+
+## Second Logistic Regression
+
+- Let's Add One More Variable.
+- Passenger Class
+
+```{r second-logit, echo=TRUE, results="raw"}
+
+if(exists("model.logit")) rm(model.logit)
+if(exists("survived")) rm(survived)
+
+
+## Logistic Regression Time.
+## This one is super simple.
+model.logit <- glm( survived ~ pclass + sex + age + sex*pclass, family = binomial, data = train )
+summary( model.logit )
+
+survived <-
+    predict.glm(model.logit
+                ,newdata = test
+                ,type = "response"
+               )
+
+survived <- ifelse(survived >= .5, 1, 0)
+
+## OK! I give up!
+model.logit <- cbind(passengerid = test$passengerid, survived = survived)
+
+write.csv(model.logit
+          ,file = "model-logit2.csv"
+          ,row.names=FALSE
+         )
+
+
+```
+
+## Second Logistic Regression: Continued
+
+- Take a careful look at that model. What do you see?
+- This only improves the score 0.00957.
+- But, it moved us up in the standings by 519 positions.
+- We are sitting at 1437 now.
+- But these are SMALL changes in accuracy.
+- It is still only correct 77.5 percent of the time.
+
+## Next Steps
+
+- Random Forest
+- Adding More Data Elements
+- More Time For The Presentation
+- [Kaggle: Getting Started With R](http://www.kaggle.com/c/titanic-gettingStarted/details/new-getting-started-with-r)
+
+# Be Careful.
+
+<img src="img/titanic-bow.jpg" width=35%>
