@@ -1,0 +1,141 @@
+---
+title: "A Titanic Intro To R"
+author: "Andy Choens, MSW"
+subtitle: "About Today's Workshop"
+output:
+  ioslides_presentation:
+    logo: "img/titanic.jpg"
+---
+
+## Learning Objectives
+
+- Introduce you to R and RStudio.
+- RStudio and RMarkdown
+- R Basics
+- Import CSV
+- Data Munging
+- Exploratory Data Analysis
+- Statistical Tests
+    - Student's T-Test 
+    - Chi Square
+- Prediction
+    - Logistic Regression
+
+## Learning Objectives - Disclaimer
+
+- This is NOT a statistics workshop.
+- This is a How-To in R workshop.
+- They had five days to sinke the Titanic.
+- We only have 3 hours.
+- We are on a three hour tour!
+
+<img src="img/gilligan.jpg" height=250px>
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Workshop Structure
+
+- Captain Smith says YOU need write code.
+    - He ~~*does* have a good track record~~. He sank his boat.
+    - Learning is **DOING** (preferably with joy).
+- Each presentation (except this one) is accompanied by a workbook.
+    - These files are yours to keep. They will have ALL of the code
+      from today's workshop and any code you write.
+
+## Stupid Questions?
+
+- There are no stupid question!
+- Shoulder Surfers to the rescue!
+- Stop me if you feel you are getting lost.
+- Avoid icebergs off the starboard bow.
+
+## What Is R?
+
+According to Wikipedia, R is:
+
+- An  ~~clone~~ implementation  of S.
+- A language that uses ~~static~~ lexical  scoping.
+- An  ~~kinda pokey~~ interpreted language for statistical analysis.
+
+<br/>
+
+[Wikipedia: R Programming Language](https://en.wikipedia.org/wiki/R_%28programming_language%29)
+
+
+<div class="notes">
+
+- SAS was developed at the North Carolina State University
+  in 1966. The SAS institute was formed in 1976. In spite of its long
+  relationship with healthcare, it was originally developed to analyze
+  agricultural data.
+- John Chambers started programming S in 1976 to replace a bunch of
+  Fortran routines used at Bell Labs (part of AT&T).
+- The aim of the language is: "to turn ideas into software, quickly
+  and faithfully".
+- R is an open source descendent of S
+- The big improvement -  lexical scoping!
+- Ross Ihaka and Robert Gentleman started programming R in 1996 - 1996.
+- R is referred to as the lingua franca of data analysis.
+
+</div>
+
+## Why Learn R?
+
+- Integrated
+    - SAS & SPSS
+    - PostgreSQL, Oracle, SQL Server, Vertica
+- Supported
+    - R Foundation
+    - Microsoft
+- Extensible
+    - Over 7,000 packages available no CRAN.
+    - CRAN, BioConductor, GitHub
+- Resilient
+- Ecosystem
+- Free and Open Source Software (FOSS).
+    - Free as in freedom, not beer.
+    - Four Freedoms
+
+<div class="notes">
+- Integrated
+- Supported
+- Extensible
+- Resilient - No Single Point of Failure
+- Ecosystem - Not a Tool
+- FOSS
+</div>
+## Four Freedoms of Free Software
+
+- **Freedom 0:** The freedom to run the program for any purpose.
+- **Freedom 1:** The freedom to study how the program works, and change it to make it do what you wish.
+- **Freedom 2:** The freedom to redistribute copies so you can help your neighbor.
+- **Freedom 3:** The freedom to improve the program, and release your improvements (and modified versions in general) to the public, so that the whole community benefits.
+
+## Reproducibility Crisis
+
+- TODO - Could we address some portion of the reproducibility crisis
+  with an approach to science that mirrors the Four Freedoms?
+
+## Acknowedgements
+
+- EBCoP
+- [Kaggle's "Titanic: Machine Learning From Disaster"](http://www.kaggle.com/c/titanic-gettingStarted)
+- [Data Carpentry's R Ecology Demo](http://www.datacarpentry.org/)
+
+TODO - Table with logos~
+
+<div class="notes">
+
+- I based this workshop on a Kaggle data set used to introduce new
+  members to machine learning.
+- I also owe a big thanks to the folks at Data Carpentry who I stole
+  liberally from.
+- R Ecology workshop. 
+
+</div>
+ 
+## NEXT
+
+- Let's Do Some R!
+    - *AND* Sink A *(Titanic)* Boat!
+- Start RStudio
+    - Is anyone not using RStudio today?
+- Open the file workbook-01-intro-to-r.Rmd.

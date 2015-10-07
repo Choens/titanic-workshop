@@ -1,0 +1,660 @@
+---
+title: "A Titanic Introduction to R"
+subtitle: "Let's Get Started!"
+author: "Andy Choens, MSW"
+output:
+  ioslides_presentation:
+    widescreen: TRUE
+    logo: "img/titanic.jpg"
+---
+
+## Workbook
+
+- You can run the code in these slides by opening
+  `01-introduction-to-r.R` and following along.
+- **ALL** of the code you see on the screen today is in your
+  workbook.
+- You will learn more if you see the code run for yourself.
+    - *This is technically an untested hypothesis. Sorry.*
+
+## Learning Objectives
+
+- RStudio
+- R Semantics, Structure, Etc.
+- Getting Help
+- Atomic Data Types
+- Vectors
+
+```{r 01-INTRODUCTION-TO-R, echo=FALSE,eval=TRUE,purl=TRUE}
+
+## Learning Objectives -----------------
+## - RStudio
+## - R semantics, structure, etc.
+## - Getting Help
+## - Atomic Data Types
+## - Vectors
+
+## The slides for this presentation can be gotten at: 
+
+```
+
+# First Steps In R
+
+## To Start RStudio
+
+- Click on the RStudio icon.
+- Open the R Script you would like to run: `01-introduction-to-r.R`
+- ~~Sink a very large boat.~~ *(Not technically necessary.)*
+
+<br/>
+
+#### Questions
+
+- Is anyone NOT using RStudio today?
+- Does anyone need help getting RStudio / R to start?
+
+```{r STARTING-RSTUDIO, echo=FALSE,eval=TRUE,results='hide',purl=TRUE}
+
+## To start RStudio:
+## - Click on the RStudio icon.
+## - Open the R Script you would like to run.
+## - Sink a very large boat.
+
+```
+
+## RStudio: Screenshot 1 {.centered}
+
+[<img src="img/rstudio-01.png" width="100%">](img/rstudio-01.png)
+
+## RStudio: Screenshot 2 {.centered}
+
+[<img src="img/rstudio-02.png" width="100%">](img/rstudio-02.png)
+
+## Two ways to run code:
+
+<div style="float:left;width:50%">
+#### REPL
+<br />
+<br />
+<img src="img/rstudio-repl-01.png" width="95%" style="outline-style:solid;display:block;margin-left:auto;margin-right:auto">
+</div>
+
+<div style="float:right;width:50%">
+#### R Scripts
+<br />
+<br />
+<img src="img/rstudio-script-01.png" width="95%" style="outline-style:solid;display:block;margin-left:auto;margin-right:auto">
+<br />
+<br />
+<img src="img/rstudio-run-01.png" width="95%">
+</div>
+
+```{r TWO-WAYS-TO-RUN-CODE, eval=TRUE,echo=FALSE,purl=TRUE}
+
+## You can run code in one of three ways:
+## 1. REPL: The interactive console in the bottom left of RStudio.
+## 2. R Scripts: Write a script and run it via the run command.
+##    - To run the code, put your cursor on the row you want to run and hit
+##      [CTRL]+[ENTER] OR hit the "Run" button in the top right hand corner.
+
+```
+
+## An Overly Complicated Calculator
+
+- R is a great calculator.
+- PLEASE tell us know if you can't find this code in
+  the <br/> `01-introduction-to-r.R` workbook.
+- Now that you have found it - **You try it!**
+
+```{r AN-OVERLY-COMPLICATED-CALCULATOR, eval=TRUE,echo=TRUE,purl=TRUE,results="hide"}
+
+## You can use R as an over-powered calculator.
+## Type the following into the REPL console or run them from the 
+## 01-introduction-to-r.R script.
+
+1 + 1
+
+sqrt(9)             ## sqrt() is a function.
+
+sqrt(1+5+6-3)       ## We can pass values to functions and get results.
+
+```
+
+## <img src="img/captain-smith-super-small.jpg" height=50px>Practice: Calculator
+
+This is our first visit from Captain Smith.
+
+```{r PRACTICE-CALCULATOR, eval=TRUE,echo=TRUE,purl=TRUE,results="hide"}
+
+## What is the value of (1+2)*(1+1+1) ?
+
+## Write the "equation" here and run it.
+
+```
+
+<br/>
+Answer:
+
+>- [1] 9
+
+## Assignment Operators {.smaller}
+
+**NOTE:** You should run this code with me.
+
+```{r ASSIGNMENT-OPERATORS-EQUALS, eval=TRUE,echo=TRUE,purl=TRUE,results='hide'}
+
+## The equals sign can be used to assign value to a variable.
+a = 1
+a
+
+```
+
+Returns:
+
+>- [1] 1
+
+```{r ASSIGNMENT-OPERATORS-AO, eval=TRUE,echo=TRUE,purl=TRUE,results='hide'}
+
+## But the preferred assignment operator is "<-".
+## RStudio Shortcut: [Alt] [-] will insert the R assignment operator.
+
+a <- 1
+a
+
+```
+
+Returns:
+
+>- [1] 1
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Practice: Assignment Operator
+
+```{r PRACTICE-ASSIGNMENT-OPERATOR, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Create a variable "sank" and give it a value of "1912". 
+
+## Replace this comment with some code.
+```
+
+<br />
+<br />
+
+Correct Answers: *(No Peeking!)*
+
+>- `sank <- 1912`
+>- `sank <- "1912"`
+
+# Atomic Data Types
+
+## Atomic Data Types - Numeric
+
+- R has extensive support for different types of numbers.
+- R can also handle imaginary numbers and other fun mathematical
+  oddities.
+- Today, we are going to keep it "real" and focus on simple things.
+
+```{r ATOMIC-DATA-TYPES-NUMERIC, echo=TRUE,eval=FALSE,purl=TRUE}
+
+## Numeric -----------------------------
+pi <- 3.14159
+
+## We can confirm this:
+typeof(pi)          ## This is a function we will use again. 
+
+```
+
+<br />
+
+Returns:
+
+>- `[1] "double"`
+
+## Atomic Data Types - Funny Integers
+
+- **Question:** Are you running this code as I do?
+- **Best Answer:** Yes!
+
+```{r ATOMIC-DATA-TYPES-INTEGERS-FUNNY, echo=TRUE,eval=FALSE,purl=TRUE}
+
+## Integers are funny. They have to be created consciously.
+starboard <- 10
+typeof(starboard)           ## I told you. This is a useful function.
+
+```
+
+<br />
+
+Returns:
+
+>- `[1] "double"`
+>- Yes, 10 **IS** an integer but R is treating like a decimal.
+
+## Atomic Data Types - Integers {.smaller}
+
+```{r ATOMIC-DATA-TYPES-INTEGERS, echo=TRUE,eval=FALSE,purl=TRUE}
+
+## Integers must be created consciously.
+starboard <- as.integer(10)
+typeof(starboard)
+
+```
+
+Returns:
+
+>- `[1] "integer"`
+
+```{r ATOMIC-DATA-TYPES-IS-INTEGER, echo=TRUE,eval=FALSE,purl=TRUE}
+
+## We can (double) confirm this:
+is.integer(starboard)
+
+```
+
+Returns:
+
+>- `[1] TRUE`
+
+- **Question:** Why would R have this behavior?
+
+>- **Answer:** R tries to give your variables the "right" type.
+
+## Numerics ARE Safer {.smaller}
+
+```{r NUMERICS-ARE-SAFER-1, echo=TRUE,eval=FALSE,purl=TRUE,results="hide"}
+
+## Question: What is the assigned value of foo?
+port <- as.integer(10)
+port
+
+```
+
+Answer:
+
+>- `[1] 10`
+
+```{r NUMERICS-ARE-SAFER-2, echo=TRUE,eval=FALSE,purl=TRUE,results="hide"}
+
+## Question: What is the assigned value of foo?
+port <- as.integer(3.14159)
+port
+
+```
+
+Answer:
+
+>- `[1] 3`
+>- The decimal, 3.14159, was coerced to an integer.
+>- R floors decimal values. It does NOT round them.
+
+## Numerics ARE Safer {.smaller}
+
+```{r NUMERICS-ARE-SAFER-3, echo=TRUE,eval=FALSE,purl=TRUE,results="hide"}
+
+## Question: What is the assigned value of foo?
+port <- 3.3 * 4
+port
+
+```
+
+Answer:
+
+>- [1] 13.2
+
+```{r NUMERICS-ARE-SAFER-4, echo=TRUE,eval=FALSE,purl=TRUE,results="hide"}
+
+## Question: What is the assigned value of foo?
+port <- as.integer(3.3) * 3
+port
+
+```
+
+Answer:
+
+>- [1] 9
+
+## Numerice ARE Safer: Discussion
+
+- Avoid integers unless you KNOW it is an integer.
+- Many programming languages will make integers into integers and then
+do integer math, even when you don't want it to.
+- R hates you less.
+- Don't look like this guy.
+
+<img src="img/gilligan.jpg" height=250px>
+   
+## Atomic Data Types - LOGICAL {.smaller}
+
+```{r ATOMIC-DATA-TYPES-LOGICAL-LTE, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## LOGICAL variables are often created in the process of comparing things.
+starboard <- 10; port <- 15;
+
+## Question: Is this TRUE or FALSE?
+starboard <= port   ## Yeah - It is a little nonsensical.
+
+```
+
+Answer:
+
+>- `[1] TRUE`
+
+```{r ATOMIC-DATA-TYPES-LOGICAL-E, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## Question: Is this TRUE or FALSE?
+port = starboard
+
+```
+
+Answer:
+
+>- NEITHER!!!
+>- This is the equivalent of: `port <- 10`!
+>- To compare things, we need slightly different syntax. . . .
+
+## Atomic Data Types - LOGICAL
+
+```{r ATOMIC-DATA-TYPES-LOGICAL-EE, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## LOGICAL variables are often created in the process of comparing things.
+starboard <- 10; port <- 15;
+
+## THIS IS HOW YOU COMPARE THINGS!
+starboard == port
+
+```
+
+Returns:
+
+>- `[1] FALSE`
+>- Comparison operators: `<`, `>`, `==`, `<=`, `>=`, `|`, `!`
+
+## Atomic Data Types - CHARACTER {.smaller}
+
+- Andy likes to call "character" variables "string" vars.
+- He profusely apologizes in advance.
+
+```{r ATOMIC-DATA-TYPES-CHARACTER, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## You can use " or ' to create a character.
+## There are subtle differences, mostly if your variable has
+## either in it.
+
+## Some character vars:
+first_name <- "Captain"
+last_name <- "Smith"
+
+## Let's put them together!
+paste(first_name, last_name, sep=" ")
+
+```
+
+Returns:
+
+>- `[1] "Captain Smith"`
+>- We will learn additional functions for working with character variables as we go.
+
+## Atomic Data Types - DATES {.smaller}
+
+```{r ATOMIC-DATA-TYPES-DATE-1, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## POSIX Dates are EASY!
+## Like an integer, you have to be explicit.
+aft <- as.Date("2015-01-01")
+
+## typeof
+typeof(aft)         ## typeof may return something you don't expect.
+
+```
+
+Returns:
+
+>- `[1] "double"`
+>- Stored internally as a number.
+
+```{r ATOMIC-DATA-TYPES-DATE-2, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## Kinda looks like a character var.
+aft
+
+```
+
+Returns:
+
+>- `[1] "2015-01-01"`
+>- But it LOOKS like a date when we look at it.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px>Practice: Atomic Data Types {.smaller}
+
+- The Captain *(once again)* thinks it is YOUR turn to write some code.
+
+```{r PRACTICE-ATOMIC-DATA-TYPES, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## 1: Create an variable called "my_age" and then
+##    assign it an integer equal to your age.
+
+## 2: Using the following code, which is bigger (later)? a_day or today?
+
+## This creates two date vars.
+a_day <- as.Date('2015-06-30')
+today <- Sys.Date()
+
+## Use this space to compare a_day to today.
+##
+
+```
+
+Example Answers:
+
+>- `my_age <- 36`
+>- `a_day < today` which returns: `[1] TRUE`
+>- There are, obviously, other possible answers.
+
+## Vectors
+
+- Vectors are a 1-dimensional data set in R.
+- They have two important attributes:
+    - Data Type (can be ANY)
+    - Length
+
+```{r VECTORS, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+yard_arm <- c(1,2,3,4,5)      ## The Titanic's maiden voyage
+                              ## lasted for five days.
+yard_arm
+
+```
+
+Returns:
+
+>- [1] 1 2 3 4 5
+>- The "atomic" variables we created earlier? Just vectors with length 1.
+
+## Vectors - Length
+
+```{r VECTORS-LENGTH-1, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## The variable yard_arm has five distinct values in it.
+length(yard_arm)
+
+```
+
+Returns:
+
+>- `[1] 5`
+
+```{r VECTORS-LENGTH-2, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## This variable only has one value.
+starboard <- 1
+length(starboard)
+
+```
+
+Returns:
+
+>- `[1] 1`
+
+
+## Vectors - Indexing {.smaller}
+
+- Often, we only want to work with part of a vector.
+
+```{r VECTORS-INDEXING-1, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## Returns the THIRD value stored in yard_arm.
+yard_arm[3]         ## The square brackets are important.
+                    ## They let us explicitly reference specific
+                    ## values in the vector.
+
+```
+
+Returns:
+
+>- `[1] 3`
+
+
+```{r VECTORS-INDEXING-2, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## Returns ALL values in yard_arm with a value greater than 2.
+yard_arm[ yard_arm>2 ]        ## The also make it possible
+                              ## to get ranges of values.
+
+```
+
+Returns:
+
+>- `[1] 3 4 5`
+
+## Arithmetic on Vectors {.smaller}
+
+- Arithmetic is done on all members of the vector.
+
+```{r ARITHMETIC-ON-VECTORS-1, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## We can do math on vectors.
+starboard <- c(25,30,40,45,50)
+port <- c(90,70,50,30,10)
+
+starboard + port
+
+```
+
+Returns:
+
+>- `[1] 115 100  90  75  60`
+
+```{r ARITHMETIC-ON-VECTORS-2, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## We can do math on vectors.
+starboard <- c(25,30,40,45,50)
+port <- 3
+
+starboard * port
+
+```
+
+Returns:
+
+>- `[1]  75  90 120 135 150`
+
+## Operating on Vectors {.smaller}
+
+- Many functions will roll up the values.
+
+```{r OPERATING-ON-VECTORS-1, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## We can do math on vectors.
+starboard <- c(25,30,40,45,50)
+
+mean(starboard)
+
+```
+
+Returns:
+
+>- `[1] 38`
+
+```{r OPERATING-ON-VECTORS-2, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## We can do math on vectors.
+starboard <- c(25,30,40,45,50)
+
+sd(starboard)
+
+```
+
+Returns:
+
+>- `[1] 10.36822`
+
+## Operating on Vectors {.smaller}
+
+- But not all.
+
+```{r OPERATING-ON-VECTORS-3, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## We can do math on vectors.
+starboard <- c(25.1,389.776,43.6,41.3,57.56)
+
+round(starboard,1)
+
+```
+
+Returns:
+
+>- `[1]  25.1 389.8  43.6  41.3  57.6`
+
+Discussion:
+
+- When using functions on vectors you MUST know what it is doing.
+- Or you may get unexpected results.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px>Practice: Vectors {.smaller}
+
+- Last practice before we break.
+
+```{r PRACTICE-VECTORS, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+## 1: Create an vector, with a length of 4. Put the years
+##    you went to highschool into this vector.
+##    "Numeric" integers are fine for this. You don't need dates.
+##    If you need help, try this:
+##    ?c 
+
+## 2: Use an index and a greater than or less than boolean operator
+##    to return the last three years you went to highschool.
+
+## 3: Run typeof on your new highschool years variable.
+##    What is the output.
+##    Does it surprise you?
+
+## 4: What was the "average" year you went to highschool?
+##    Yes. This is a completely meaningless number. Sorry.
+
+```
+
+- Example Answers on next slide.
+
+## Example Answers:
+
+- `hs_years <- c(1994,1995,1996,1997)`
+- `hs_years[ hs_years>1994 ]` which returns: `[1] TRUE`
+- `typeof(hs_years)`
+- `mean(hs_years)`
+
+## Quick Recap
+
+- RStudio
+- R Semantics, Structure, Etc.
+- Getting Help
+- Atomic Data Types
+- Vectors
+    - Creating
+    - Indexing
+    - Operating On
+
+# Questions?
+
+<img src="img/titanic-cobh-harbour-1912.jpg" width=75% style="display:block;margin-left:auto;margin-right:auto">
+
+

@@ -1,0 +1,19 @@
+---
+title: "Index"
+output:
+  html_document:
+    theme: readablex
+---
+
+# Presentations
+
+- <a href="https://choens.github.io/titanic-workshop/00-about.html">00: About</a>
+- <a href="https://choens.github.io/titanic-workshop/01-introduction-to-r.html">01: Introduction To R</a>
+
+# Participant Materials
+
+- There will be something here soon.
+
+# Other Helpful Resources
+
+- Yes. Resources.

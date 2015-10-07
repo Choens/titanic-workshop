@@ -1,14 +1,19 @@
 ---
 title: "A Titanic Exploration"
 author: "Andy Choens, MSW"
-output: html_document
+output:
+  ioslides_presentation:
+    logo: "img/titanic.jpg"
 ---
 
-## Goals
+## Learning Objectives
 
+- Working directory
 - Exploratory Data Analysis (EDA)
 - Hypothesis Testing
 - Tell A Story (Or Two)
+
+<br/>
 
 To operationalize this, we will learn how to:
 
@@ -20,13 +25,21 @@ To operationalize this, we will learn how to:
 
 ## What Is Exploratory Data Analysis?
 
-- When you see the big damned boat, get ready to make a hypothesis!
+<br/>
+<br/>
+*
+
+> - When you see the big damned boat, get ready to make a hypothesis!
+
+<div class="notes">
 
 - Today, we will define EDA as a collection of visualization and
   hypothesis testing techniques to help us understand the shape and
   meaning of our data.
 - This is not a Tukey compliant definition of EDA, but it will have to
   do for the time being.
+
+</div>
 
 ## Data Import
 
@@ -48,10 +61,15 @@ dim(train)
 
 ```
 
+<div class="notes">
+
 - Abstracting data import and export simplifies your analysis code
   because import and export are often quite complicated.
 - Although did not do this today, I often include any / all data clean
   up, restructuring, etc. in my import functions.
+
+</div>
+
 
 ## What Did We Import?
 
@@ -61,28 +79,53 @@ str(train)
 
 ```
 
-- str: Compactly display the internal *str*ucture of an R object, a
+<div class="notes">
+
+- Compactly display the internal *str*ucture of an R object, a
   diagnostic function and an alternative to ‘summary’ (and to some
   extent, ‘dput’).
+
+</div>
 
 ## Selecting Data - Indexes
 
 - There is more than one way to skin a cat.
 - Choose the approach that seems to work best in the circumstance.
 
-```{r selecting-column-l-show, echo=TRUE, eval=TRUE}
+<div style="display:inline-block; margin:1 auto; float:left; width:48%; text-align: left;">
+
+```{r selecting-column-l-show, echo=TRUE, eval=FALSE}
 
 ## Select a column
 train$name
 
 ```
 
-```{r selecting-column-r-show, echo=TRUE, eval=TRUE}
+```{r selecting-columh-l-actual, echo=FALSE, eval=TRUE, results="raw"}
+
+head(train$name)
+
+```
+
+</div>
+
+<div style="display:inline-block; margin:1 auto; float:right; width:48%;text-align: left;">
+```{r selecting-column-r-show, echo=TRUE, eval=FALSE}
 
 ## Select a column, with indexing.
 train[,"name"]
 
 ```
+
+```{r selecting-columh-r-actual, echo=FALSE, eval=TRUE, results="raw"}
+
+head(train[,"name"])
+
+```
+
+</div>
+
+<div class="notes">
 
 R is like Perl, many different ways to do everything.
 
@@ -92,32 +135,66 @@ Use the method:
 - you want to type,
 - is appropriate at that moment.
   
+</div>
+
+
 ## Select a Row
 
-```{r select-a-row-show, echo=TRUE, eval=TRUE, results="raw"}
+```{r select-a-row-show, echo=TRUE, eval=FALSE, results="raw"}
 
 train[train$name == "Montvila, Rev. Juozas", ]
 
 ```
 
+```{r select-a-row-actual, echo=TRUE, eval=TRUE, results="raw"}
+
+train[train$name == "Montvila, Rev. Juozas", ][,1:6]
+
+```
+
+<div class="notes">
+
+Discuss
+
+- "=="
+- ","
+
+</div>
+
 ## Filter Data
 
 - NAs are tricky in R.
 
-```{r filter-only-age-show, echo=TRUE, eval=TRUE}
+```{r filter-only-age-show, echo=TRUE, eval=FALSE}
 
 train[train$age > 75, ]
 
 ```
 
+```{r filter-only-age-actual, echo=FALSE, eval=TRUE, results="raw"}
+
+head(train[train$age > 75, 1:9],4)
+
+```
+
+<div class="notes">
+
 - Find the NAs early and deal with them.
 - Or they will bite you.
 
+</div>
+
 ## Filter Data: Continued
 
-```{r filter-na-show, echo=TRUE, eval=TRUE, results="asis"}
+```{r filter-na-show, echo=TRUE, eval=FALSE, results="asis"}
 
 train[train$age > 75 & !is.na(train$age), ]
+
+```
+
+```{r filter-na-actual, echo=FALSE, eval=TRUE, results="raw"}
+
+train[train$age > 75 & !is.na(train$age), 1:5]
 
 ```
 
@@ -135,14 +212,26 @@ length( train$age[ is.na(train$age) ] )
 - Fortunately, we have Hadley Wickham on our side.
 - His way is (almost always) the easier way.
 
-```{r filter-dplyr-show, echo=TRUE, eval=TRUE, results="asis"}
+```{r filter-dplyr-show, echo=TRUE, eval=FALSE, results="asis"}
 
 library(dplyr)
 filter(train, age > 75)
 
 ```
 
+```{r filter-dplyr-actual, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE, results="raw"}
+
+##suppressMessages( library(dplyr) )
+library(dplyr)
+filter(train, age > 75)[,1:5]
+
+```
+
 # What Proportion of People Died?
+
+<img src="img/titanic-side.gif" width=100%>
+
+<div class="notes">
 
 - Everyone knows a lot of people died when the Titanic sank.
 - There were ~ 1,317 people aboard her maiden voyage.
@@ -152,6 +241,8 @@ filter(train, age > 75)
 - Titanic had room for a maximum of 2,566 passengers.
 - She was only about half full.
 - It, actually, could have been much worse.
+
+</div>
 
 ## Story Telling
 
@@ -172,8 +263,12 @@ tbl <- table(train$survived)
 tbl
 
 ```
+<div class="notes">
+
 - Preferably the true story.
 - A story that leads to understanding.
+
+</div>
 
 ## Survived Proportions
 
@@ -185,12 +280,19 @@ prop.table( tbl )
 
 ```
 
+<br/>
 - Nearly 62% Of Passengers Died!
 
 # Hypothesis: Sex and Survival?
 
+<img src="img/titanic-side.gif" width=100%>
+
+<div class="notes">
+
 - Do you hypothesize there is a relationship between someone's gender
   and their chances of surviving the Titanic?
+
+</div>
 
 ## Sex
 
@@ -202,7 +304,11 @@ prop.table( tbl )
 table(train$sex)
 
 ```
-- There were more men than women.
+
+<br/>
+*
+
+> - There were more men than women.
 
 ## Survival by Sex - Cross Tab
 
@@ -214,7 +320,10 @@ tbl
 
 ```
 
-- Even though there are more total men, more total women survived.
+<br/>
+*
+
+> - Even though there are more total men, more total women survived.
 
 ## Survival by Sex - Proportions {.smaller}
 
@@ -245,7 +354,10 @@ summary(tbl)
 
 ```
 
-- Yes. The observed differences are statistically significant.
+<br/>
+*
+
+> - Yes. The observed differences are statistically significant.
 
 ## Survival by Sex - Visualization {.smaller}
 
@@ -262,11 +374,17 @@ train %>% ggvis( ~sex, fill=~as.character(survived) ) %>% layer_bars()
 
 # Hypothesis: Age and Survival?
 
+<img src="img/titanic-side.gif" width=100%>
+
+<div class="notes">
+
 - Sex correlates with the odds ratio of survival.
 - What about age? Does it correlate with survival?
 - Correlation does not imply causation, although in this example it
   generally does.
-
+  
+</div>
+  
 ## Age - Histogram
 
 - Age is a continuous variable.
@@ -284,6 +402,8 @@ train %>% filter(!is.na(age)) %>%
 
 - What is our story here?
 
+<div style="display:inline-block; margin:auto; float:left; width:48%;">
+
 ### Survivors
 
 ```{r age-hist-survivors, echo=TRUE, fig.height = 2, fig.width=3, fig.align="center" }
@@ -295,6 +415,9 @@ train %>%
                 layer_histograms( width=10)
 
 ```
+</div>
+
+<div style="display:inline-block; margin:auto; float:right; width:48%;">
 
 ### Deceased
 
@@ -307,6 +430,7 @@ train %>%
                 layer_histograms( width=10)
 
 ```
+</div>
 
 ## Regression - Survival x Age Continued  {.smaller}
  
@@ -343,6 +467,6 @@ train %>%
 
 # Your Turn.
 
-<img src="graphics/titanic-side.gif" width=100%>
+<img src="img/titanic-side.gif" width=100%>
 
 

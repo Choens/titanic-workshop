@@ -1,10 +1,12 @@
 ---
 title: "A Titanic Projection"
 author: "Andy Choens, MSW"
-output: html_document
+output:
+  ioslides_presentation:
+    logo: "img/titanic.jpg"
 ---
 
-```{r init, echo=TRUE}
+```{r init, echo=FALSE, results="none", message=FALSE}
 
 ## Load some packages, while we're busy., but dno't display.
 library(dplyr)
@@ -13,13 +15,23 @@ library(pander)
 
 ```
 
+# Learning Objectives
+
+- I dunno. What the hell are we doing here?
+
 # What Is A Predictive Model?
+
+<img src="img/titanic-bow.jpg" width=35%>
+
+<div class="notes">
 
 - Wikipedia: Predictive modelling leverages statistics to predict
   outcomes. Most often the event one wants to predict is in the
   future, but predictive modelling can be applied to any type of
   unknown event, regardless of when it occurred.
 - Do we know enough now to build a simple predictive model? 
+
+</div>
 
 ## Our Projections
 
@@ -62,7 +74,10 @@ test  <- read.test()
 
 ```
 
-- How can we look to make sure our data imported correctly?
+<br/>
+*
+
+> - How can we look to make sure our data imported correctly?
 
 ## What's In The Test Data Set? {.smaller}
 
@@ -78,6 +93,8 @@ dim(test)
 
 # Time To Build Some Models!
 
+<img src="img/titanic-bow.jpg" width=35%>
+
 ## Model 1 - Everyone Lives!
 
 - We know 62% of the passengers died.
@@ -92,12 +109,22 @@ model.stupid = test %>% select(passengerid) %>% mutate(survived=1)
 write.csv(model.stupid, file = "model-stupid.csv", row.names=FALSE)
 
 ```
-- Model Stupid earned me a score of 2332 on the leader board (of 2335).
-- My model was a correct only 37 percent of the time.
-- [Model Data](./model-stupid.csv)
-- Somehow, two people scored worse than we did. Impressive.
+<br/>
+*
+
+> - Model Stupid earned me a score of 2332 on the leader board (of 2335).
+> - My model was a correct only 37 percent of the time.
+> - [Model Data](./model-stupid.csv)
+
+<div class="notes">
+
+- Somehow, two people scored worse than I did. Impressive.
+
+</div>
 
 # Is This Model Useful?
+
+<img src="img/captain-smith.jpg" width=25%>
 
 ## Model 2 - Everyone Dies!
 
@@ -113,13 +140,17 @@ write.csv(model.everyone.dies, file = "model-everyone-dies.csv", row.names=FALSE
 
 ## Model 2 - Everyone Dies! Continued
 
-- This model bumped me up 36 positions on the leaderboard.
-- I am now sitting in position 2,295.
+- This model bumped us up 36 positions on the leaderboard.
+- We are now sitting in position 2,295.
 - The model is correct 62.679 percent of the time.
 - Drinks are on me, if you are old enough to drink.
 - [Model Data](./model-everyone-dies.csv)
 
 # Is This Model Useful?
+
+<img src="img/captain-smith.jpg" width=25%>
+
+<div class="notes">
 
 - The first model was just a joke.
 - But this was a real model.
@@ -129,6 +160,8 @@ write.csv(model.everyone.dies, file = "model-everyone-dies.csv", row.names=FALSE
   and was a genuine simplification of our actual data.
 - In other words - it was actually a mode (albeit a poor one).
   
+</div>
+
 ## Women and Children First!
 
 - We know 74% of women survived.
@@ -181,6 +214,8 @@ write.csv(model.women.and.children.first[,c("passengerid", "survived")]
 
 # When is a model is useful enough?
 
+<img src="img/captain-smith.jpg" width=25%>
+
 ## So, What Limits A Model?
 
 - We could keep refining this process, but it would eventually become
@@ -195,7 +230,11 @@ write.csv(model.women.and.children.first[,c("passengerid", "survived")]
 
 # Data Cleanup
 
+<img src="img/titanic-bow.jpg" width=35%>
+
 ## How Often Is Age Missing? {.smaller}
+
+<div style="display:inline-block; margin:1 auto; float:left; width:48%; text-align: left;">
 
 ```{r train-na-age-count, echo=TRUE, results="asis"}
 
@@ -209,6 +248,10 @@ na.train <- train %>%
 pander(na.train)
 ```
 
+</div>
+
+<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+
 ```{r test-na-age-count, echo=TRUE, results="asis"}
 
 na.test <- test %>%
@@ -220,6 +263,8 @@ na.test <- test %>%
 
 pander(na.test)
 ```
+
+</div>
 
 ## Why Do We Care?
 
@@ -233,17 +278,36 @@ pander(na.test)
 - We need something else to tell us something about their age.
 - What about their name?
 
-```{r train-names-where-age-na-show, echo=TRUE, eval=TRUE}
+<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+
+```{r train-names-where-age-na-show, echo=TRUE, eval=FALSE}
 
 train$name[ is.na(train$age) ]
 
 ```
 
-```{r test-names-where-age-na-show, echo=TRUE, eval=TRUE}
+```{r train-names-where-age-na-actual, echo=FALSE, results="asis"}
+
+head( train$name[is.na(train$age) ] )
+
+```
+
+</div>
+
+<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+
+```{r test-names-where-age-na-show, echo=TRUE, eval=FALSE}
 
 test$name[ is.na(test$age) ]
 
 ```
+
+```{r test-names-where-age-na-actual, echo=FALSE, results="asis"}
+
+head( test$name[ is.na(test$age) ] )
+
+```
+</div>
 
 ## So Long NA, We Hardly Knew Ye! Continued
 
@@ -307,6 +371,8 @@ test$age[ grepl("Master.", test$name) & is.na(test$age) ] <- age.mas
 
 - Victory!
 
+<div style="display:inline-block; margin:1 auto; float:left; width:48%; text-align: left;">
+
 ```{r train-na-age-count-2, echo=TRUE, results="asis"}
 
 na.train <- train %>%
@@ -319,6 +385,10 @@ na.train <- train %>%
 pander(na.train)
 ```
 
+</div>
+
+<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+
 ```{r test-na-age-count-2, echo=TRUE, results="asis"}
 
 na.test <- test %>%
@@ -330,6 +400,8 @@ na.test <- test %>%
 
 pander(na.test)
 ```
+
+</div>
 
 ## Women and Children First! (Round 2)
 
@@ -393,10 +465,14 @@ summary( model.logit )
 
 ```
 
+<div class="notes">
+
 - This tells us that our model is working, but it isn't doing as well
   as I would like.
 - Age is simply not as useful as gender.
- 
+  
+</div>
+
 ## First Logistic Regression: Continued
 
 ```{r first-logit-write, echo=TRUE, results="asis"}
@@ -480,4 +556,4 @@ write.csv(model.logit
 
 # Be Careful.
 
-<img src="graphics/titanic-bow.jpg" width=35%>
+<img src="img/titanic-bow.jpg" width=35%>
