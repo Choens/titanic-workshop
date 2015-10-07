@@ -1,6 +1,6 @@
 # Titanic Introduction to R
 
-USes the Kaggle Titanic dat set to introduce professional and student
+Uses the Kaggle Titanic dat set to introduce professional and student
 researchers to the R programming language.
 
 ## Workshop Requirements:
