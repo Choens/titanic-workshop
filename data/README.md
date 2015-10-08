@@ -1,4 +1,4 @@
-# Data
+# README - Data
 
 ## test.csv
 
@@ -13,11 +13,11 @@
    comp.
 -  Saved - 2014-10-15 at 23:35
 
--  Data Variables (Test / Train)
+##  Data Variables (Test / Train)
 
 Describes the variables in the test / train .csv files.
+This data dictionary and subsequent info was obtained from Kaggle.
 
-From Kaggle:
 
 | Variable | Description                       | Details                                        |
 |----------+-----------------------------------+------------------------------------------------|

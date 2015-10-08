@@ -300,11 +300,13 @@ NOTE:
 
 ##  <img src="img/captain-smith-super-small.jpg" height=50px> Practice: Explore Titanic Data
 
-- You know several ways to look at R Data Frames.
-- Use one of them now to look at our Titanic data.
+- Use one of the tools we have leared today to look at `ti_train`.
 - The `str()` command is another way to explore the data.
     - *This is one of my favorite commands because it is compact and
       works well from the command-line interface I prefer.*
+- Documentation for the Kaggle Titanic data is available in
+  `data/README.md`
+    - Open this file with RStudio!
 
 <br />
 
@@ -316,6 +318,14 @@ NOTE:
 str(ti_train)
 
 ```
+
+<div class="notes">
+
+- Compactly display the internal *str*ucture of an R object, a
+  diagnostic function and an alternative to ‘summary’ (and to some
+  extent, ‘dput’).
+
+</div>
 
 # HELP! 
 

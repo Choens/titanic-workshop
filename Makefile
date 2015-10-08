@@ -27,11 +27,15 @@ pres-04: 04-projection.Rmd
 	Rscript -e 'rmarkdown::render("04-projection.Rmd")'
 	Rscript -e 'knitr::purl("04-projection.Rmd", "04-projection.Rmd")'
 
+participant-instructions:
+	Rscript -e 'rmarkdown::render("participant-instructions.Rmd")'
+
 participant-materials:
 	zip titanic-workshop.zip \
 		01-introduction-to-r.Rmd \
 		02-data-frames.html \
 		data/*
+
 clean:
 	rm *.html
 	rm models/*.csv

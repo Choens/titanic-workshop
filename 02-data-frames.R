@@ -137,7 +137,7 @@ str(ti_train)
 ## is.
 ## 
 
-## ----LOCAL-HELP-HELP, echo=TRUE,eval=FALSE,purl=TRUE---------------------
+## ----LOCAL-HELP, echo=TRUE,eval=FALSE,purl=TRUE--------------------------
 ## 
 ## ## Sometimes you need help with a specific command.
 ## ## R's built-in help is good. Not perfect. But good.
