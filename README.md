@@ -1,59 +1,53 @@
 # Titanic Introduction to R
 
-Uses the Kaggle Titanic dat set to introduce professional and student
-researchers to the R programming language.
+The Titanic Introduction to R uses the Kaggle Titanic dat set to
+introduce professional and student researchers to the R programming
+language. All code here is distributed under the GPL3 license. Other
+licenses may apply to the data, etc.
 
 ## Workshop Requirements:
 
 1. You must have access to a computer during the workshop.
 2. Please install R on the aforementioned computer prior to the
-   workshop. Pre-compiled binaries for Windows and Mac OS X can be
-   downloaded from: http://cran.r-project.org/
+   workshop. 
+3. Workshop materials are available at: https://choens.github.io/titanic-workshop/
 
-   To install R on Debian / Ubuntu: (I assume you are CLI friendly):
+## Installing R
 
-```
-sudo apt-get install \
-    build-essential \
-    libcurl4-openssl-dev \
-    r-base-dev \
-    r-base-html \
-    r-doc-html \
-    r-doc-info \
-    r-recommended
-```
+Pre-compiled binaries for Windows and Mac OS X can be downloaded from:
 
-   Fans of Fedora (and other Red Hat clones / derivatives) should use the
-   following code.
+http://cran.r-project.org/
 
-```
-sudo dnf install \
-    R \
-    R-java \
-    R-RODBC
-```
+This workshop requires Base R. No additional packages are required.
 
-   If anyone would like to contribute instructions for SUSE or any
-   other Linux or BSD derivative, I'll post them here.
+To install R on Debian / Ubuntu: (I assume you are CLI friendly):
 
-4. Download or clone this repo to the aforementioned laptop before
-   coming to the workshop. This is workshop, not a demo.
+    sudo apt-get install \
+        build-essential \
+        libcurl4-openssl-dev \
+        r-base-dev \
+        r-base-html \
+        r-doc-html \
+        r-doc-info \
+        r-recommended
 
-   Workshop participants will have access to a series of documented
-   .Rmd files. These files will include most of the code you will see
-   in the presentation and give you something real to work with and
-   use during the workshop. Rather than trying to take notes, you can
-   listen and think, knowing you've got access to all the good stuff.
+Fans of Fedora (and other Red Hat clones / derivatives) should use the
+following code.
 
-   We are going to have FUN!
+    sudo dnf install \
+        R \
+        R-java \
+        R-RODBC
+
+If anyone would like to contribute instructions for SUSE or any other
+Linux or BSD derivative, I'll post them here.
 
 ## Recommended Setup:
 
-Quite frankly, the default R interface stinks. I strongly recommend
-you install RStudio or some other R interface of your choice. The
-course materials will be distributed and interacted with as .R and
-.Rmd files. I recommend using an editor that can handle Rmarkdown
-files, in addition to plain-vanilla .R files.
+The default R interface stinks. I recommend participants install
+RStudio or some other R interface of your choice. Course materials
+will be distributed as .R and .Rmd files. I recommend using an editor
+that can handle R script and RMarkdown files.
 
 - RStudio is the easiest to install (on all platforms) and setup. I
   strongly recommend RStudio unless you have a compelling reason to
@@ -80,14 +74,32 @@ files, in addition to plain-vanilla .R files.
 There are dedicated R interfaces for other popular text editors such
 as Sublime and Vim. Participants may use any R interface, including
 the default R interpreter, but the presenter only claims to be
-knowledgeable of and support RStudio / Emacs+ESS. Use other
-interfaces, such as Statet, only if you feel confident you can set up
-and configure them prior to the workshop. Remember, you must be able
-to work effectively with Rmarkdown files, which intersperse R code
-with plain text.
+knowledgeable of and support RStudio / Emacs+ESS. All screenshots are
+of RStudio. Use other interfaces, such as Statet, only if you feel
+confident you can set up and configure them prior to the
+workshop. Remember, you must be able to work effectively with
+Rmarkdown files, which intersperse R code with plain text.
 
 If you have problems getting setup for the workshop, please file a bug
 against this project to get my attention and I'll work through it with
 you. If you have problems installing R, RStudio or Emacs / ESS, file a
 bug against this README file. If you have trouble installing the
 packages, file a bug against packages.R.
+
+## License
+
+Copyright (C) 2015 Andrew Choens
+
+This program is free software: you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see
+<http://www.gnu.org/licenses/>.
