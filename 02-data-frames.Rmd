@@ -1,6 +1,6 @@
 ---
 title: "A Titanic Introduction to R"
-subtitle: "Data Frames"
+subtitle: "Data Frames (Tabular Data)"
 output:
   ioslides_presentation:
     widescreen: TRUE
@@ -15,6 +15,10 @@ output:
   workbook.
 - You will learn more if you see the code run for yourself.
     - *This is technically an untested hypothesis. Sorry.*
+- There are a few code examples I have had to comment out in order for
+  my slides to build correctly. Feel free to uncomment most of this
+  code (unless it is otherwise noted).
+    - RStudio Shortcut - [CTRL]+[SHIFT]+c
 
 ## Learning Objectives
 
@@ -72,33 +76,31 @@ output:
 
 ```
 
-
 ## Your First Data Frame {.smaller}
 
-- R comes with demo data sets.
-- Many of these are data frames.
+- R comes with many demo data sets.
+- Most of these are data frames.
 
 ```{r YOUR-FIRST-DATA-FRAME,echo=TRUE,eval=TRUE,purl=TRUE}
 
-## This loads the iris data set.
-## It provides the measurements in centimeters of the variables
-## sepal length and width and petal length and width, respectively, for
-## 50 flowers from each of 3 species of iris. The species are Iris
-## setosa, versicolor, and virginica.
+## Loads the iris data set. It provides the measurements (cm)
+## of the sepal length and width, and petal length and width,
+## respectively, for 50 flowers from 3 species of iris.
 data(iris)
 
 ```
 
-Three Ways To View A Data Frame:
+**DEMO:** Four Ways To View A Data Frame:
 
-1. Use the RStudio Interface. Bottom-right pane
+1. Use the RStudio Interface. Top-Right Pane
 2. Use the view command.  `View(iris)`.
 3. Enter the name of the data fram into the REPL console.
     - Easiest, but inefficient for large data sets.
-
+4. Use the head() and tail() commands.
+    
 ## Data Frame Dimensions
 
-```{r DATA-FRAME-DIMENSIONS,echo=TRUE,eval=TRUE,purl=TRUE}
+```{r DATA-FRAME-DIMENSIONS,echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
 
 ## How many rows and how many columns are in iris?
 dim(iris)
@@ -110,7 +112,7 @@ Returns:
 >- `[1] 150   5`
 >- Always: Rows, Columns
 
-```{r DATA-FRAME-COL-NAMES,echo=TRUE,eval=TRUE,purl=TRUE, results='hide'}
+```{r DATA-FRAME-COL-NAMES,echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
 
 ## What are the name of the columns?
 names(iris)
@@ -119,23 +121,24 @@ names(iris)
 
 Returns:
 
->- [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"
+>- `[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"`
 
-## Access A Column
+## Use A Column {.smaller}
 
-```{r ACCESS-A-COLUMN,echo=TRUE,eval=TRUE,purl=TRUE, results='hide'}
+```{r USE-A-COLUMN,echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
 
-## R makes it EASY to access a single column of data
-## (and thus use it in an analysis).
+## It is EASY to access a single column of data for use in analysis.
 iris$Sepal.Length
 
 ```
 
-- This returns a lot of data I won't print here.
+Returns:
 
-```{r AVERAGE-SEPAL-LENGTH,echo=TRUE,eval=TRUE,purl=TRUE, results='hide'}
+>- Nahh. We need to see a demo.
 
-## The Sepal.Length column is numeric, so we can find the average Sepal.Length
+```{r AVERAGE-SEPAL-LENGTH,echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
+
+## The Sepal.Length column is numeric. We can find it's average.
 mean( iris$Sepal.Length )
 
 ```
@@ -144,15 +147,17 @@ Returns:
 
 >- `[1] 5.843333`
 >- R is picky. Capitalization ALWAYS matter.
+>- Because this lets us work with a single vector, we can use the
+>  indexing we learned earlier.
 
 ## Lower Case Column Names
 
-```{r LOWER-CASE-COLUMN-NAMES,echo=TRUE,eval=TRUE,purl=TRUE, results='hide'}
+```{r LOWER-CASE-COLUMN-NAMES,echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
 
-## I hate typing in capital letters in column names.
-## We can use the tolower function to make them lower case.
+## I'm lazy - I hate typing upper-case letters in column names.
+## The tolower function can be used to make them lower case.
 ## We can then assign these new names to the col names of the
-## data object, which makes life better.
+## iris data object. This makes life better.
 names(iris) <- tolower( names(iris) )
 
 names(iris)
@@ -162,19 +167,25 @@ names(iris)
 Returns:
 
 >- `[1] "sepal.length" "sepal.width"  "petal.length" "petal.width"  "species"`
+>- The spaces in the code are for clarity. They are not required.
 
 ## <img src="img/captain-smith-super-small.jpg" height=50px> Practice: Load A Data Frame
 
-```{r PRACTICE-LOAD-A-DATA-FRAME, echo=TRUE,eval=TRUE,purl=TRUE, results='hide'}
+```{r PRACTICE-LOAD-A-DATA-FRAME, echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
 
 ## Q1: Load the 'mtcars' data set
-##     mtcars is a data set on cars from the late 70's.
+##     mtcars is a data set about cars from the late 70's.
 
 
-## Q2: What is the average miles per gallon (mpg) and the standard deviation?
-##     The 'mean' and 'sd' functions will be helpful.
+## Q2: What is the average Miles Per Gallon (mpg) and the standard deviation of mpg?
+##     The 'mean' and 'sd' functions will be helpful for figuring this out.
 
 ```
+
+<br/>
+
+- This is the last non-boat related example.
+- From here on out, we're going to get our feet wet in some Titanic data.
 
 # Importing Data
 
@@ -187,107 +198,132 @@ Returns:
     - This concept is critical when using external files.
 - Fortunately, you do not have to do this manually!
 
-<div style="display:inline-block; margin:1 auto; float:left; width:48%; text-align: left;">
 
-#### Displays current working directory:
-<br/>
-```{r echo=TRUE}
+```{r WORKING-DIRECTORY, echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
 
+## Knowing the current working directory is VERY important for
+## interacting with external files. R prefers relative paths
+## to external files. Avoid absolute paths when you can.
 getwd()
 
 ```
 
-</div>
+## Set Working Directory
 
-<div style="display:inline-block; margin:1 auto; float:right; width:48%;  text-align: left;">
+Ways to set the Working Directory:
 
-#### Sets current working directory:
+1. Code (Example code below.)
+2. RStudio has a menu option for this in the "Session" menu.
+3. RStudio Project! (This is the best option)
+    - In fact, it is so good, we are going to demo it.
+    - And then you have to do it on your computer.
 
-<br/>
-```{r echo=TRUE, eval=FALSE}
+```{r SET-WORKING-DIRECTORY, echo=TRUE,eval=FALSE,purl=TRUE,results='hide'}
 
-setwd("/home/andy/my-funky-repo")
+## Sets the working directory to a folder called sinking-boats.
+## You don't want to run this unless it is a real folder.
+## This isn't. So don't run it, until you modify it.
+setwd("/home/andy/sinking-boats")
 
 ```
 
-</div>
+- If you do this in code, I recommend using UNIX-style slashes (/).
 
-## Working Directory Continued
+## <img src="img/captain-smith-super-small.jpg" height=50px> Practice: Create A New R Project
 
-- If you use RStudio, you can create projects and define the default
-  working directory for each project.
-- You should set your working directory to the root directory of the
-  Git repo, titanic-workshop.
+```{r PRACTICE-CREATE-A-NEW-R-PROJECT, echo=TRUE,eval=FALSE,purl=TRUE,results='hide'}
 
-***** Time to start using TITANIC data.
-***** I need a screenshot.
+## Create a new RStudio Project in the folder where you
+## unzipped the workshop files. R will switch to this project
+## automatically.
 
+```
 
-<div class="notes">
+<br />
 
-### PAUSE!
+NOTE:
 
-- The working directory concept is important because we are going to
-  be importing data and functions into a live R session.
-- Does everyone understand what their working directory should be?
-
-</div>
+- If you aren't sure you are doing this correctly, let us know.
+- Everyone needs to complete this done successfully.
 
 # Import CSV
 
 <img src="img/titanic-cobh-harbour-1912.jpg" width=75%>
 
-## See Files
+## Directory List
 
-- For today's purposes, paths can be assumed to be relative to the
-  working directory.
+- Because we set the working directory, we can use relative paths in
+  our code.
 
-<div style="display:inline-block; margin:1 auto; float:left; width:48%; text-align: left;">
 
-```{r echo=TRUE, eval=FALSE}
+```{r DIRECTORY-LIST-1, echo=TRUE,eval=FALSE,purl=TRUE,results='hide'}
 
-## Files in current working directory.
+## To see the list of files in the current working directory.
 dir()
+```
+
+- If you run this and don't see the .R files we are using, TELL US!
+
+<br />
+
+```{r DIRECTORY-LIST-2, echo=TRUE,eval=FALSE,purl=TRUE,results='hide'}
+
+## To see the list of files in the data folder.
+dir(path="data")
 
 ```
 
-</div>
+- In the first example, we implicitly used the default path, which is
+".", AKA the current working directory.
 
-<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+## <img src="img/captain-smith-super-small.jpg" height=50px> Import Titanic Data
 
-```{r echo=TRUE}
+```{r IMPORT-TITANIC-DATA, echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
 
-## Files in the data directory.
-dir("data")
-
-```
-
-</div>
-
-## Import / View Data
-
-```{r echo=TRUE, eval=FALSE}
-
-train <- read.csv("data/train.csv", as.is=TRUE)   ## Imports CSV data into R.
-
-
-str(train)   ## Compactly display the structure of an arbitrary R object.
-
-
-View(train)   ## Will open as a seaparate window, unless you are using RStudio.
-              ## If you are using RStudio, it will open the data in the IDE.
+## Imports the Titanic training data set from the data folder.
+## After running this, you should see the tit_train data set in the
+## Environment tab in RStudio.
+ti_train <- read.csv("data/train.csv", as.is=TRUE)
 
 ```
 
-# HELP!
+NOTE:
+
+- Tell us if you are having trouble with this.
+- Setting `as.is = TRUE` lets us avoid importing the data in Factors.
+    - We haven't talked about factors yet, but they often cause more
+    problems than they are worth.
+- *Why ti_train? This data set was originally set up by Kaggle for
+  introducing people to Machine Learning. I wanted to make it clear it
+  is "Titanic" data, but keep the training data set distinct from the
+  test data set.*
+
+##  <img src="img/captain-smith-super-small.jpg" height=50px> Practice: Explore Titanic Data
+
+- You know several ways to look at R Data Frames.
+- Use one of them now to look at our Titanic data.
+- The `str()` command is another way to explore the data.
+    - *This is one of my favorite commands because it is compact and
+      works well from the command-line interface I prefer.*
+
+<br />
+
+```{r PRACTICE-EXPLORE-TITANIC-DATA, echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
+
+## Compactly display the structure of an arbitrary R object.
+## This works on objects other than data frames, but that is
+## what most people will use it for most often.
+str(ti_train)
+
+```
+
+# HELP! 
 
 <img src="img/titanic-cobh-harbour-1912.jpg" width=75% style="display:block;margin-left:auto;margin-right:auto">
 
-## Local Help!
+## What Was That Command?
 
-#### What Was That Command?
-
-```{r LOCAL-HELP-EXTENSION, echo=TRUE,eval=FALSE,purl=TRUE}
+```{r WHAT-WAS-THAT-COMMAND, echo=TRUE,eval=FALSE,purl=TRUE}
 
 ## When you can't remember the name of the command you
 ## are looking for, RStudio offers command and variable
@@ -296,9 +332,9 @@ is.
 
 ```
 
-#### Help!
+## Local Help
 
-```{r LOCAL-HELP-HELP, echo=TRUE,eval=FALSE,purl=FALSE}
+```{r LOCAL-HELP, echo=TRUE,eval=FALSE,purl=TRUE}
 
 ## Sometimes you need help with a specific command.
 ## R's built-in help is good. Not perfect. But good.
@@ -311,12 +347,14 @@ help(round)
 
 ```
 
-- Of course, RStudio makes it easy to fina and use R's built-in help
-system.
+- RStudio makes it easy to find and use R's built-in help.
 - I suppose most of you will just use that.
 
 ## Remote Help
 
 - Getting help from others is AWESOME!
 - StackOverflow: https://stackoverflow.com/
-- Search the [r] tag!
+    - Search the [r] tag!
+- Quick-R: http://www.statmethods.net/
+- R Tutorial: http://www.r-tutor.com/
+- These resources are ALL listed on the Titanic Workshop Page

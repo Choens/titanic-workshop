@@ -15,14 +15,23 @@ pres-01: 01-introduction-to-r.Rmd
 	Rscript -e 'rmarkdown::render("01-introduction-to-r.Rmd")'
 	Rscript -e 'knitr::purl("01-introduction-to-r.Rmd", "01-introduction-to-r.R")'
 
-pres-02: 02-exploratory-analysis.Rmd
-	Rscript -e 'rmarkdown::render("02-exploratory-analysis.Rmd")'
-	Rscript -e 'knitr::purl("02-exploratory-analysis.Rmd", "02-exploratory-analysis.R")'
+pres-02: 02-data-frames.Rmd
+	Rscript -e 'rmarkdown::render("02-data-frames.Rmd")'
+	Rscript -e 'knitr::purl("02-data-frames.Rmd", "02-data-frames.R")'
 
-pres-03: 03-projection.Rmd
-	Rscript -e 'rmarkdown::render("03-projection.Rmd")'
-	Rscript -e 'knitr::purl("03-projection.Rmd", "03-projection.Rmd")'
+pres-03: 03-exploratory-analysis.Rmd
+	Rscript -e 'rmarkdown::render("03-exploratory-analysis.Rmd")'
+	Rscript -e 'knitr::purl("03-exploratory-analysis.Rmd", "03-exploratory-analysis.R")'
 
+pres-04: 04-projection.Rmd
+	Rscript -e 'rmarkdown::render("04-projection.Rmd")'
+	Rscript -e 'knitr::purl("04-projection.Rmd", "04-projection.Rmd")'
+
+participant-materials:
+	zip titanic-workshop.zip \
+		01-introduction-to-r.Rmd \
+		02-data-frames.html \
+		data/*
 clean:
 	rm *.html
 	rm models/*.csv
