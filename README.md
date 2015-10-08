@@ -1,4 +1,4 @@
-# Titanic Introduction to R
+# README
 
 The Titanic Introduction to R uses the Kaggle Titanic dat set to
 introduce professional and student researchers to the R programming
