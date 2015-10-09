@@ -1,0 +1,175 @@
+# Data Cleanup
+
+<img src="img/titanic-bow.jpg" width=35%>
+
+## How Often Is Age Missing? {.smaller}
+
+<div style="display:inline-block; margin:1 auto; float:left; width:48%; text-align: left;">
+
+```{r train-na-age-count, echo=TRUE, results="asis"}
+
+na.train <- train %>%
+    summarize(
+        "N NA" = sum(is.na(age))
+       ,"Total Rows" = n()
+       ,"% Missing" = round( 100.0 * sum(is.na(age)) / n(), 1 )
+    )
+
+pander(na.train)
+```
+
+</div>
+
+<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+
+```{r test-na-age-count, echo=TRUE, results="asis"}
+
+na.test <- test %>%
+    summarize(
+        "N NA" = sum(is.na(age))
+       ,"Total Rows" = n()
+       ,"% Missing" = round( 100.0 * sum(is.na(age)) / n(), 1 )
+    )
+
+pander(na.test)
+```
+
+</div>
+
+## Why Do We Care?
+
+- Some of these missing values could be kids, and we know they are
+  more likely to live.
+- More advanced modeling techniques like logistic regression and random
+  forest don't deal well with missing data.
+
+## So Long NA, We Hardly Knew Ye!
+
+- We need something else to tell us something about their age.
+- What about their name?
+
+<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+
+```{r train-names-where-age-na-show, echo=TRUE, eval=FALSE}
+
+train$name[ is.na(train$age) ]
+
+```
+
+```{r train-names-where-age-na-actual, echo=FALSE, results="asis"}
+
+head( train$name[is.na(train$age) ] )
+
+```
+
+</div>
+
+<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+
+```{r test-names-where-age-na-show, echo=TRUE, eval=FALSE}
+
+test$name[ is.na(test$age) ]
+
+```
+
+```{r test-names-where-age-na-actual, echo=FALSE, results="asis"}
+
+head( test$name[ is.na(test$age) ] )
+
+```
+</div>
+
+## So Long NA, We Hardly Knew Ye! Continued
+
+- Take a look at the data.
+- What do you see?
+
+## So Long NA, We Hardly Knew Ye! Continued
+
+- They record a title with nearly EVERY name.
+- Does this help us?
+
+```{r impute-ages, echo=TRUE, results="raw"}
+
+age.dr  <- mean(train$age[ grepl("Dr.",     train$name) ], na.rm=TRUE)
+age.mr  <- mean(train$age[ grepl("Mr.",     train$name) ], na.rm=TRUE)
+age.ms  <- mean(train$age[ grepl("Ms.",     train$name) ], na.rm=TRUE)
+age.mrs <- mean(train$age[ grepl("Mrs.",    train$name) ], na.rm=TRUE)
+age.mis <- mean(train$age[ grepl("Miss.",   train$name) ], na.rm=TRUE)
+age.mas <- mean(train$age[ grepl("Master.", train$name) ], na.rm=TRUE)
+
+```
+
+## So Long NA, We Hardly Knew Ye! Continued
+
+```{r impute-ages-show, echo=TRUE, results="raw"}
+
+age.mr
+
+age.mrs
+
+age.mis
+
+age.mas
+
+```
+
+## So Long NA, We Hardly Knew Ye! Continued
+
+- This should get rid of the missing ages.
+- And it could help us ID a few more young people.
+
+```{r impute-ages-record, echo=TRUE, results="raw"}
+
+train$age[ grepl("Dr.",     train$name) & is.na(train$age) ] <- age.dr   
+train$age[ grepl("Mr.",     train$name) & is.na(train$age) ] <- age.mr   
+train$age[ grepl("Ms.",     train$name) & is.na(train$age) ] <- age.ms
+train$age[ grepl("Mrs.",    train$name) & is.na(train$age) ] <- age.mrs
+train$age[ grepl("Miss.",   train$name) & is.na(train$age) ] <- age.mis
+train$age[ grepl("Master.", train$name) & is.na(train$age) ] <- age.mas
+
+test$age[ grepl("Dr.",     test$name) & is.na(test$age) ] <- age.dr   
+test$age[ grepl("Mr.",     test$name) & is.na(test$age) ] <- age.mr
+test$age[ grepl("Ms.",    test$name) & is.na(test$age) ] <- age.ms
+test$age[ grepl("Mrs.",    test$name) & is.na(test$age) ] <- age.mrs
+test$age[ grepl("Miss.",   test$name) & is.na(test$age) ] <- age.mis
+test$age[ grepl("Master.", test$name) & is.na(test$age) ] <- age.mas
+
+```
+
+## So Long NA, We Hardly Knew Ye! Continued
+
+- Victory!
+
+<div style="display:inline-block; margin:1 auto; float:left; width:48%; text-align: left;">
+
+```{r train-na-age-count-2, echo=TRUE, results="asis"}
+
+na.train <- train %>%
+    summarize(
+        "N NA" = sum(is.na(age))
+       ,"Total Rows" = n()
+       ,"% Missing" = round( 100.0 * sum(is.na(age)) / n(), 1 )
+    )
+
+pander(na.train)
+```
+
+</div>
+
+<div style="display:inline-block; margin:1 auto; float:right; width:48%; text-align: left;">
+
+```{r test-na-age-count-2, echo=TRUE, results="asis"}
+
+na.test <- test %>%
+    summarize(
+        "N NA" = sum(is.na(age))
+       ,"Total Rows" = n()
+       ,"% Missing" = round( 100.0 * sum(is.na(age)) / n(), 1 )
+    )
+
+pander(na.test)
+```
+
+</div>
+

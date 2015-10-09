@@ -1,0 +1,13 @@
+Place holder for data management stuff I pulled out.
+
+## Selecting Data Columns- Numerically
+
+- `ti_train[,"name"]` is similar to how we filter vectors.
+
+
+```{r SELECTING-DATA-COLUMNS-NUMERICALLY, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Selects the first six entries in the names column numerically.
+head( ti_train[,4] )
+
+```

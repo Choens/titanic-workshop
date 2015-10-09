@@ -3,48 +3,49 @@ title: "A Titanic Intro To R"
 subtitle: "About Today's Workshop"
 output:
   ioslides_presentation:
+    widescreen: TRUE
     logo: "img/titanic.jpg"
 ---
 
 ## Learning Objectives
 
 - Introduce you to R and RStudio.
-- RStudio and RMarkdown
+- RStudio
 - R Basics
 - Import CSV
-- Data Munging
+- Data Management
 - Exploratory Data Analysis
-- Statistical Tests
-    - Student's T-Test
-    - Chi Square
+- Hypothesis Testing
 - Prediction
-    - Logistic Regression
 
 ## Learning Objectives - Disclaimer
 
 - This is NOT a statistics workshop.
 - This is a How-To in R workshop.
-- They had five days to sinke the Titanic.
+- They had five days to sink the Titanic.
 - We only have 3 hours.
-- We are on a three hour tour!
+
+<br/>
 
 <img src="img/gilligan.jpg" height=250px>
 
 ## <img src="img/captain-smith-super-small.jpg" height=50px> Workshop Structure
 
 - Captain Smith says YOU need write code.
-    - He ~~*does* have a good track record~~. He sank his boat.
+    - He ~~has a good track record~~ sank his boat.
     - Learning is **DOING** (preferably with joy).
 - Each presentation (except this one) is accompanied by a workbook.
     - These files are yours to keep. They will have ALL of the code
       from today's workshop and any code you write.
+- All workshop materials available to you to use and modify.
+    - If you use these materials elsewhere, I'd appreciate attribution.
 
 ## Stupid Questions?
 
 - There are no stupid question!
-- Shoulder Surfers to the rescue!
-- Stop me if you feel you are getting lost.
-- Avoid icebergs off the starboard bow.
+- We are here to help you!
+- Stop us if you feel you are getting lost.
+- Always avoid icebergs off the starboard bow.
 
 ## What Is R?
 
@@ -63,13 +64,13 @@ According to Wikipedia, R is:
 
 - SAS was developed at the North Carolina State University
   in 1966. The SAS institute was formed in 1976. In spite of its long
-  relationship with healthcare, it was originally developed to analyze
+  relationship with health care, it was originally developed to analyze
   agricultural data.
 - John Chambers started programming S in 1976 to replace a bunch of
   Fortran routines used at Bell Labs (part of AT&T).
 - The aim of the language is: "to turn ideas into software, quickly
   and faithfully".
-- R is an open source descendent of S
+- R is an open source descendant of S
 - The big improvement -  lexical scoping!
 - Ross Ihaka and Robert Gentleman started programming R in 1996 - 1996.
 - R is referred to as the lingua franca of data analysis.
@@ -94,40 +95,47 @@ According to Wikipedia, R is:
     - Four Freedoms
 
 <div class="notes">
+
 - Integrated
 - Supported
 - Extensible
 - Resilient - No Single Point of Failure
 - Ecosystem - Not a Tool
 - FOSS
+
 </div>
+
 ## Four Freedoms of Free Software
 
 - **Freedom 0:** The freedom to run the program for any purpose.
 - **Freedom 1:** The freedom to study how the program works, and change it to make it do what you wish.
 - **Freedom 2:** The freedom to redistribute copies so you can help your neighbor.
-- **Freedom 3:** The freedom to improve the program, and release your improvements (and modified versions in general) to the public, so that the whole community benefits.
+- **Freedom 3:** The freedom to improve the program, and release your
+  improvements (and modified versions in general) to the public, so
+  that the whole community benefits.
 
-## Reproducibility Crisis
+## Imagine, Open Research
 
-- TODO - Could we address some portion of the reproducibility crisis
-  with an approach to science that mirrors the Four Freedoms?
+- Data can't always be public.
+- IF DOH intentionally releases PHI, we go to jail.
+- But, our methods, our assumptions: These things are not private, but
+  they do influence the end result.
+- Imagine research where statistical methods and application were all
+  100% transparent.
 
-## Acknowedgements
+## Acknowledgements
 
-- EBCoP
-- [Kaggle's "Titanic: Machine Learning From Disaster"](http://www.kaggle.com/c/titanic-gettingStarted)
-- [Data Carpentry's R Ecology Demo](http://www.datacarpentry.org/)
-
-TODO - Table with logos~
+- DOH EBCoP
+- SUNY Rockefeller
+- Kaggle's "Titanic: Machine Learning From Disaster" Project
+- Data Carpentry's R Ecology Demo
 
 <div class="notes">
 
 - I based this workshop on a Kaggle data set used to introduce new
   members to machine learning.
 - I also owe a big thanks to the folks at Data Carpentry who I stole
-  liberally from.
-- R Ecology workshop.
+  liberally from: R Ecology workshop.
 
 </div>
 

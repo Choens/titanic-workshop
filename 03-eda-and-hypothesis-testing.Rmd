@@ -1,0 +1,589 @@
+---
+title: "A Titanic Exploration"
+subtitle: EDA and Hypothesis Testing
+output:
+  ioslides_presentation:
+    widescreen: TRUE
+    logo: "img/titanic.jpg"
+---
+
+## Workbook
+
+- You can run the code in these slides by opening
+  `03-eda-and-hypothesis-testing.R` and following along.
+- **ALL** of the code you see on the screen today is in your
+  workbook.
+- The pace / complexity of this workshop is about to increase.
+    - *That first slideshow is painfull*
+- I am going to demo more code. But I want you running code too.
+    - PRACTICE v. Demo Slides
+    - *Doing is learning.*
+
+## Learning Objectives
+
+- More Data Management
+- Graphing / Plotting
+- Contingency Tables
+- Hypothesis Testing
+
+<br />
+
+### Note:
+
+Principal Components Analysis and other more advanced EDA tools are
+not part of today's workshop.
+
+*I am interested in developing more modules for this workshop,
+ licensed under an Open Source License. Let me know if you'd like to
+ help.*
+
+```{r 03-EDA-AND-HYPOTHESIS-TESTING, echo=FALSE,eval=TRUE,purl=TRUE}
+
+## Learning Objectives -----------------
+## - More Data Management
+## - Graphing/Plotting
+## - Contingency Tables
+## - Hypothesis Testing
+
+## Slides URL: https://choens.github.io/titanic-workshop/03-eda-and-hypothesis-testing.html
+
+```
+
+# Dafynitions
+
+<img src="img/titanic-cobh-harbour-1912.jpg" width=75% style="display:block;margin-left:auto;margin-right:auto">
+
+## Exploratory Data Analysis (EDA):
+
+Based on some notes I stole from Wikipedia:
+
+- An approach to analyzing data sets to summarize their main
+  characteristics, often with visual methods.
+- R's design was influences by Tukey and EDA.
+- Tends to emphasize graphics / plotting.
+- Fast and Dirty.
+- Today, we will be using BASE R for our graphics. These are
+  relatively easy to use, but are not necessarily beautiful.
+    - The `ggplot2` and `ggvis` packages are more appropriate for
+      producing publication ready graphics.
+
+## Hypothesis Testing:
+
+Based on some notes I stole from Wikipedia:
+
+- AKA Confirmatory Data Analysis (CDA)
+- A method of statistical inference.
+- Two statistical data sets are compared.
+- The hypothesis is proposed for the relationship between the two data
+  sets. This is compared as an alternative to a null hypothesis (no
+  relationship between two data sets).
+- Comparison is deemed statistically significant if the relationship
+  would be an unlikely realization of the null hypothesis according to
+  a threshold probability (the significance level).
+- Today's example is the Chi Square test.
+- I am not discussing Bayesian stats today.
+
+## Data Import
+
+```{r DATA-IMPORT, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Imports the Titanic Training Data and makes the col names lower case.
+ti_train <- read.csv("data/train.csv", as.is=TRUE)
+names(ti_train) <- tolower( names(ti_train) )
+
+## Displays the number of rows / columns in the data frame.
+dim(ti_train)
+
+```
+
+### Note:
+
+- If you do not have the ti_train object in your current R session,
+please let us know.
+
+## What Did We Import? {.smaller}
+
+```{r WHAT-DID-WE-IMPORT, echo=TRUE,eval=TRUE,purl=TRUE}
+
+# Fast, compact way of reviewing what data was imported.
+str(ti_train)
+
+```
+
+- Additional documentation is available in `data/README.md`
+    - Open this Markdown file with RStudio!
+
+<div class="notes">
+
+- Compactly display the internal *str*ucture of an R object, a
+  diagnostic function and an alternative to ‘summary’ (and to some
+  extent, ‘dput’).
+
+</div>
+
+## Selecting Data Columns {.smaller}
+
+- There is *(always)* more than one way to sink a boat.
+- Choose the approach that seems to work best in the circumstance.
+- R convention for square brackets: `[ROWS, COLS]`
+- Know where your comma is!
+
+<div style="display:inline-block; margin:1 auto;float:left;width:48%;text-align:left;">
+
+#### You can select a column by name:
+
+```{r SELECTING-DATA-COLUMNS-NAME, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Selects first 6 entries in
+## the name column.
+head( ti_train$name )
+
+```
+
+</div>
+
+<div style="display:inline-block; margin:1 auto;float:right;width:48%;text-align:left;">
+
+#### Or use square brackets:
+
+```{r SELECTING-DATA-SQUARE, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Selects first 6 entries in
+## the name column.
+head( ti_train[,"name"] )
+
+```
+
+</div>
+
+<div class="notes">
+
+R is like Perl, many different ways to do everything.
+
+Use the method:
+
+- you are comfortable with,
+- you want to type,
+- is appropriate at that moment.
+  
+</div>
+
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Demo: Select a Row
+
+- Uses a technique similar to indexing vectors.
+- Question: Why are we using "==" here?
+- Discuss: The location of the comma.
+
+```{r DEMO-SELECT-A-ROW, echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
+
+## Returns all rows where "name" is exactly "Montvila, Rev. Juozas".
+## There is only one such row.
+ti_train[ti_train$name == "Montvila, Rev. Juozas", ]
+
+```
+
+##  <img src="img/captain-smith-super-small.jpg" height=50px> PRACTICE: Filtering Data
+
+
+- We can build on the last slide to select all rows which meet a
+  specific criteria.
+
+```{r PRACTICE-FILTERING-DATA, echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
+
+## Returns all rows where the ticket cost is over 200.
+## Remember, these are 1912 prices!
+ti_train[ti_train$fare > 200, ]
+
+```
+
+##  <img src="img/captain-smith-super-small.jpg" height=50px> Demo: Tricky Filtering Data
+
+```{r DEMO-TRICKY-FILTERING-DATA, echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
+
+## Returns all rows where age is over 75.
+## What is different here?
+ti_train[ti_train$age > 75, ]
+
+```
+
+<div class="notes">
+
+- ALWAYS find the NAs early and deal with them.
+- Or they will bite you.
+
+</div>
+
+##  <img src="img/captain-smith-super-small.jpg" height=50px> Demo: Tricky Filtering Data NA
+
+- The "&" lets us have more than one filter on the data.
+- The "!" means not which inverts the Boolean test.
+- Boolean tests are BEFORE the comma, this filter removes rows.
+
+```{r DEMO-FILTERING-DATA-NA, echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
+
+## This gives us ONLY those who are over 75 because it 
+##  removes all rows where age is NA (like NULL).
+ti_train[ti_train$age > 75 & !is.na(ti_train$age), ]
+
+```
+
+<br />
+
+>- Boolean tests AFTER the comma wouldn't make much sense.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Demo: How Many NAs?
+
+- `is.na()` == `IS NULL` command from SQL.
+- This is one way to see how many NA values you have.
+- We'll learn another way in a minute.
+
+```{r DEMO-HOW-MANY-NAS, echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
+
+## Returns the number of rows where the age column is NA.
+## Filters a vector pulled from a Data Frame.
+length( ti_train$age[ is.na(ti_train$age) ] )
+
+```
+
+## Subset {.smaller}
+
+- The way the square brackets handle NAs ~~can be~~ is annoying.
+- The subset command feels familiar to new users but is infrequently
+  used.
+    - You won't find lots of examples of it on the Internet.
+- R users tend to be comfortable with programming norms.
+- Many Data Frames `-->` Memory constraints & a messy work environment.
+
+```{r SUBSET, echo=TRUE,eval=TRUE,purl=TRUE,results='hide'}
+
+## The subset command is another way to filter data.
+## Is usually used to create a new object.
+## Creating many objects --> confusion AND high memory use.
+## But, subset handles NAs in a saner way.
+
+ti_old <- subset(ti_train, age > 75)
+View( ti_old )
+
+```
+
+# Exploratory Data Analysis
+
+<img src="img/titanic-side.gif" width=100%>
+
+## Who was aboard Titanic?
+
+- We will explore four factors.
+    - Gender (sex)
+    - Passenger Class (pclass)
+    - Age (age)
+    - Cost of Ticket (fare)
+
+#### Caveats:
+
+- Two data sets, train and test. We have only imported train.
+- Counts shown are only half of the passenger manifest.
+- Assume they are representative of passengers over-all.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Demo: Contingency Table - Sex {.smaller}
+
+A contingency table is an easy way to explore data.
+
+```{r DEMO-CONTINGENY-TABLE-SEX, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Returns a contingency table of the sex column.
+tbl_sex <- table( ti_train$sex )
+tbl_sex
+
+```
+
+- The counts are 1/2 of the manifest. But the ratio between the two
+  should be representative of the whole.
+
+```{r DEMO-PRC-SEX, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Returns the percentages.
+prc_sex <- prop.table(tbl_sex)
+prc_sex
+
+```
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Demo: Barplot Sex {.smaller}
+
+The contingency table is helpful. But EDA is about seeing the numbers.
+
+```{r DEMO-BARPLOT-SEX, echo=TRUE,eval=TRUE,purl=TRUE, fig.height=4,fight.width=3,fig.align='center'}
+
+## Plots the survival numbers from above.
+barplot(tbl_sex)
+
+```
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Practice: Passenger Class
+
+```{r PRACTICE-PASSENGER-CLASS, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Q1. Build a contingency table of passenger class (pclass).
+##     Call it tbl_pclass.
+
+
+## Q2. Build a percentages contingency table of passenger class.
+##     Call it prc_pclass.
+
+
+## Q3. Draw a barplot of passenger class.
+##
+
+```
+
+I try to use object names that have a pattern:
+
+- tbl-foo: is a contingency table based on the foo column.
+- prc-foo: is the proportions, from tbl-foo.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Demo: Passenger Class
+
+- R was **strongly** influenced by Tukey's book, Exploratory Data
+  Analysis, published in 1977.
+- R gives you full access to a REPL. You don't have to write a script.
+- This high level of interactivity is a design feature, not an
+  accident.
+
+#### Mental Note To Self:
+
+- Demo using the REPL to rapidly explore data.
+- Start small. Wrap big.
+- Starting with: `table(ti_train$pclass)`
+    - Wrap this with `prop.table()` and `barplot()`
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Demo: Histogram Fare {.smaller}
+
+```{r DEMO-HISTOGRAM-FARE, echo=TRUE,eval=TRUE,purl=TRUE, fig.width=4, fig.height=4,fig.align='center'}
+
+## Returns a histogram passengers fare costs.
+## Basic usage is easy and intuitive.
+## You aren't going to publish this. But it is useful EDA.
+hist(ti_train$fare)
+
+```
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Practice: Histogram Age
+
+```{r AGE-HIST, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Q1: Create a histogram chart showing the age of passengers.
+##
+##
+
+```
+
+## "Fun" Facts About Titanic
+
+- Titanic disembarked on her maiden voyage with roughly 1,317 passengers.
+    - *Was Jack Dawson one of them????*
+- Titanic was designed for a max 2,566 passengers.
+- This tragedy could have been **much** worse.
+
+## Questions:
+
+- What proportion of passengers died?
+- How can we identify factors which correlate with passenger survival?
+
+## Survival
+
+The `survived` column is numerical, but categorical.
+
+```{r SURVIVAL, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Returns a row contingency table of the survived column.
+## Remember: 1 == Yes, 0 == No
+survival <- table( ti_train$survived )
+survival
+
+```
+
+- The odds of surviving? Not good.
+- 0 and 1 is hard to read.  We can do better.
+- But, we'll want to keep this for the logistic regression.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Demo: Lived
+
+We can create an easier to read column.
+
+```{r DEMO-LIVED, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Creates a new column, "lived" and fills it in.
+## First, create a new column with NA data in it.
+## Then, fill in the values you want.
+ti_train$lived <- NA
+ti_train$lived[ ti_train$survived == 1 ] <- "Yes"
+ti_train$lived[ ti_train$survived == 0 ] <- "No"
+
+## Returns a contingency table of the new lived column.
+lived <- table( ti_train$lived )
+lived
+
+```
+
+## Lived Proportions
+
+```{r LIVED-PROPORTIONS, echo=TRUE, eval=TRUE, purl=TRUE}
+
+## Creates a contingency table with proportions.
+## This is similar to how it is done in SQL.
+prc_lived <- round( 100*prop.table( lived ), 2 )
+prc_lived
+
+```
+
+<br/>
+
+- Fewer than 40% of passenger survived.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Demo: Lived BarPlot
+
+```{r LIVED-BARPLOT, echo=TRUE,eval=FALSE,purl=TRUE}
+
+## Plots the lived proportions. Now fancier!
+## Reverses Yes and No
+## Labels the graph and the axes.
+## Colors Output
+## And adjusts the Y limit.
+barplot(sort(prc_lived, decreasing=FALSE),
+        main="Proportion of Titanic Passengers Who Lived",
+        xlab="Lived?", 
+        ylab="Percent of Passengers",
+        col="darkblue",
+        ylim=c(0,100)
+        )
+
+```
+
+- If we increase the code complexity.
+- We are rewarded with more sophisticated output.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Demo: Lived BarPlot
+
+```{r LIVED-BARPLOT-ACTUAL, echo=FALSE,eval=TRUE,purl=FALSE, fig.align='center'}
+
+barplot(sort(prc_lived, decreasing=FALSE),
+        main="Proportion of Titanic Passengers Who Lived",
+        xlab="Lived?",
+        ylab="Percent of Passengers",
+        col="darkblue", 
+        ylim=c(0,100)
+        )
+
+```
+
+# Hypothesis Testing
+
+<img src="img/titanic-side.gif" width=100%>
+
+## Hypothesis
+
+- When someone says the name "Titanic" most of us think of the
+  infamous phrase "women and children first".
+  - But, did it matter?
+
+#### Formal Hypotheses:
+
+- Children were more likely to survive than adults.
+- Females more likely to survive than males.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Children More Likely To Survive
+
+```{r CHILDREN-MORE-LIKELY-TO-SURVIVE, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Creates a new column, "child" and fills it in.
+ti_train$child <- NA
+ti_train$child[ ti_train$age <= 18 ] <- "Child"
+ti_train$child[ ti_train$age > 18 ] <- "Adult"
+
+
+## Returns a 2x2 contingency table.
+child_survival <- table( ti_train$child,ti_train$lived )
+child_survival
+
+```
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Children Survival Proportions
+
+```{r CHILDREN-SURVIVAL-PROPORTIONS, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Proportion of children and adults who survived.
+## Margin = 1 because 1 == ROWS, 2 == COLUMNS. ALWAYS
+prop.table(child_survival, margin=1)
+
+```
+
+<br/>
+
+- It seems likely that yes, children were more likely to survive.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Children Survival Significance {.smaller}
+
+```{r CHILDREN-SURVIVAL-SIGNIFICANCE, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Hypothesis: Children are more likely to survive.
+## Run prop.test against the values, NOT the proportions.
+prop.test(child_survival, alternative = "greater")
+
+```
+
+- The p-value is less that 0.05, so we can reject the null hypothesis.
+- Yes children were more likely to survive.
+- When passed a contingency table, R will calculate greater/less based
+  on the FIRST COLUMN. Adjust your hypothesis accordingly.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Summary
+
+```{r SUMMARY, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## The summary() function can be used
+## to examine most R objects.
+summary(child_survival)
+
+```
+
+- The summary() command tests for independence.
+- Try this command on `ti_train`.
+- What do you see? Is it useful?
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Mosaic Plot
+
+```{r MOSAIC-PLOT, echo=TRUE,eval=TRUE,purl=TRUE,fig.width=4,fig.height=4,fig.align='center'}
+
+## The mosaicplot is another way of visualizing
+## complex relationships and can scale effectively
+## for many variables.
+mosaicplot(child_survival)
+
+```
+
+- You cannot use this for testing independence.
+- But it can be a useful visualization tool.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Practice: Sex & Survival
+
+```{r PRACTICE-SEX-SURVIVAL, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Q1: Create a 2x2 Contingency table for Lived and Sex.
+##     Call it sex_survival.
+
+
+## Q2: What is the proportion of men who lived, compared to
+##     proportion of women?
+
+
+## Q3: Is the observed difference between the sexes in the
+##     survival rate statistically significant?
+##
+
+```
+
+# Questions?
+
+<img src="img/titanic-side.gif" width=100%>
+
+

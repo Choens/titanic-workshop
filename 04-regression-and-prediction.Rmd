@@ -1,0 +1,291 @@
+---
+title: "A Titanic Model"
+subtitle: "Regression and Prediction"
+output:
+  ioslides_presentation:
+    widescreen: TRUE
+    logo: "img/titanic.jpg"
+---
+
+## Workbook
+
+- You can run the code in these slides by opening
+  `02-data-frames.R` and following along.
+- **ALL** of the code you see on the screen today is in your
+  workbook.
+- You will learn more if you see the code run for yourself.
+    - *This is technically an untested hypothesis. Sorry.*
+- There are a few code examples I have had to comment out in order for
+  my slides to build correctly. Feel free to uncomment most of this
+  code (unless it is otherwise noted).
+    - RStudio Shortcut - [CTRL]+[SHIFT]+c
+
+## Learning Objectives
+
+- Logistic Regression
+- Prediction
+- Export CSV
+- Kaggle
+
+```{r 04-REGRESSION-AND-PREDICTION, echo=FALSE,eval=TRUE,purl=TRUE}
+
+## Learning Objectives -----------------
+## - Logistic Regression
+## - Prediction
+## - Export CSV
+
+## Slides URL: https://choens.github.io/titanic-workshop/04-regression-and-prediction.html
+
+```
+
+#### Disclaimer:
+
+Everyone is getting tired and we've been working at this for nearly
+three hours. I am going to avoid going into too much detail, but will
+show you enough code to get you started.
+
+## Definition: Predictive Model
+
+According to Wikipedia:
+
+Predictive modeling leverages statistics to predict outcomes. Most
+often the event one wants to predict is in the future, but predictive
+modeling can be applied to any type of unknown event, regardless of
+when it occurred.
+
+- *This is a relief. Titanic sank over 100 years ago and we still
+haven't figured it out.*
+
+## About These Predictions
+
+- Will use train.csv to predict survival in test.csv.
+- I do not have the answers. You could look them up, but that's lame.
+- When I say a projection is correct xx% of the time, I am repeating
+  what Kaggle told me.
+    - Leader board comments are from early October, 2015.
+    - *YMMV (I promise it will)*.
+- Feel free to get a Kaggle account, use this code, and out-score me.
+- The model is simplistic
+- I promise, you can improve it.
+- I will give you some links at the end for further reading.
+
+## Kaggle
+
+- [https://www.kaggle.com/c/titanic](https://www.kaggle.com/c/titanic)
+- Discuss the "project".
+- Discuss the leaderboard.
+
+## Import Data
+
+```{r IMPORT-DATA, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Imports the training data.
+ti_train <- read.csv("data/train.csv", as.is=TRUE)
+names(ti_train) <- tolower( names(ti_train) )
+
+## Imports the test data.
+ti_test <- read.csv("data/test.csv", as.is=TRUE)
+names(ti_test) <- tolower( names(ti_test) )
+
+```
+
+# Time To Build Some Models!
+
+<img src="img/titanic-bow.jpg" width=35%>
+
+## Model 1 - Everyone Lives!
+
+- We know 62% of the passengers died.
+- But what will happen if we assume everyone lives?
+
+```{r MODEL-1-EVERYONE-LIVES, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## This is, quite possibly the world's worst Titanic model.
+## This is really here to demonstrate cbind() and write.csv().
+## And the laughs. Mostly the laughs.
+model_stupid = cbind( passengerid = ti_test$passengerid, survived=1 )
+write.csv(model_stupid, file = "models/stupid.csv", row.names=FALSE)
+
+```
+
+- Model "Stupid" earned me a score of 3,175 on the leader board (of 3,178).
+- My model was a correct only 37.321 percent of the time.
+- There are three people who actually built a worse model!
+
+## Model 2 - Everyone Dies!
+
+```{r MODEL-2-EVERYONE-DIES, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## This just can't be as bad. It just can't be.
+## This really is here for completeness and the laughs.
+model_everyone_dies = cbind( passengerid = ti_test$passengerid, survived=0 )
+write.csv(model_everyone_dies, file = "models/everyone-dies.csv", row.names=FALSE)
+
+```
+
+<br/>
+
+- I predict this works out better. . . for us.
+
+## Model 2 - Everyone Dies! Continued
+
+- This model bumped us up 82 positions on the leaderboard.
+- We are now sitting in position 3,093.
+- I'm a little concerned at this point that there are so many models
+  that perform worse than this.
+- The model is correct 62.679 percent of the time.
+- This is basically what we should expect, given what we say in the
+  `ti_train` data.
+
+## Model 3
+
+- We know women were more likely to survive.
+- Let's use logistic regression to model this (and build a real model).
+- By default, R will return NA when there are missing variables. and
+- Kaggle rejects submitted data with missing rows.
+- This means we can't easily use some data columns.
+
+## Model 3 - Sex {.smaller}
+
+- Example of how to build a SIMPLE model using R's glm function.
+- family=binomial `->` We are using logistic regression.
+- No output on this slide, because it doesn't fit.
+
+```{r MODEL-3-SEX-DEMO, echo=TRUE,eval=FALSE,purl=TRUE}
+
+## Builds a model using sex to predict survival.
+model_sex <- glm( survived ~ sex, family = binomial, data = ti_train )
+summary( model_sex )
+
+```
+
+- Deviance falls from 1186.7 (null) to 917.8 (model).
+- Sex is predictive of survival.
+- Yes, this is a simplistic interpretation.
+
+## Model 3 - Sex {.smaller}
+
+#### Model 3: summary() output:
+
+```{r MODEL-3-SEX, echo=FALSE,eval=TRUE,purl=FALSE}
+
+## Builds a model using sex to predict survival.
+model_sex <- glm( survived ~ sex, family = binomial, data = ti_train )
+summary( model_sex )
+
+```
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Model 3 - Sex Plotted
+
+- I simply cannot put this into a slide.
+- It is an interactive function, which helps you visualize the model.
+- But, you can run it on your computer.
+
+```{r MODEL-3-SEX-PLOTTED, echo=TRUE,eval=FALSE,purl=TRUE}
+
+## You can visually look at your model
+## by using plot(). This code is commented out
+## because this doesn't export to HTML well.
+plot(model_sex
+
+```
+
+## Model 3 - Sex Prediction
+
+```{r MODEL-3-SEX-PREDICTION, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Creates a new vector, called survived.
+## Predict.glm takes model_sex and applies it to ti_test.
+survived <- predict.glm(model_sex,
+                        newdata = ti_test,
+                        type = "response"
+                        )
+
+## We round these off, because Kaggle's survival rules are clear.
+## The survived col must be 1 or 0.
+survived <- round(survived,0)
+
+write.csv(cbind(passengerid = ti_test$passengerid, survived = survived)
+          ,file = "models/sex.csv"
+          ,row.names=FALSE
+         )
+
+```
+
+## Model 3 - Sex Prediction Continued
+
+- This improved our standings on the leaderboard by 479 positions.
+- The model is now 76.555 percent accurate.
+
+## Model 4 - Last Model
+
+- We know age matters, but age is funky because of missing data.
+- So we won't use it.
+- Another useful factor is passenger class.
+
+## Model 4 - Passenger Class
+
+```{r MODEL-4-SEX-PCLASS-DEMO, echo=TRUE,eval=FALSE,purl=FALSE}
+
+## This is our last model.
+## Uses sex + pclass to predict survival.
+model_sex_pclass <- glm( survived ~ sex + pclass, family = binomial, data = ti_train )
+summary( model_sex_pclass )
+
+```
+
+- Deviance falls from 1186.7 (null) to 827.2 (model).
+- Sex + Passenger Class is predictive of survival.
+- This is *still* a highly simplistic interpretation!
+
+## Model 4 - Passenger Class {.smaller}
+
+#### Model 4: summary() output:
+
+```{r MODEL-4-SEX-PCLASS, echo=FALSE,eval=TRUE,purl=TRUE}
+
+## This is our last model.
+## Uses sex + pclass to predict survival.
+model_sex_pclass <- glm( survived ~ sex + pclass, family = binomial, data = ti_train )
+summary( model_sex_pclass )
+
+```
+
+## Model 4 - Passenger Class Prediction
+
+```{r MODEL-4-SEX-PCLASS-PREDICTION, echo=TRUE,eval=TRUE,purl=TRUE}
+
+## Creates a new vector, called survived.
+## Predict.glm takes model_sex_pclass and applies it to ti_test.
+survived <- predict.glm(model_sex_pclass,
+                        newdata = ti_test,
+                        type = "response"
+                        )
+
+## We round these off, because Kaggle's survival rules are clear.
+## The survived col must be 1 or 0.
+survived <- round(survived,0)
+
+write.csv(cbind(passengerid = ti_test$passengerid, survived = survived)
+          ,file = "models/sex+pclass.csv"
+          ,row.names=FALSE
+         )
+
+```
+
+## Model 4 - Passenger Class Prediction Continued
+
+- The model is still only 76.555 percent accurate.
+- :-(
+- Does demonstrate how to build a model with multiple predictors.
+
+## <img src="img/captain-smith-super-small.jpg" height=50px> Model X - Your Turn
+
+- That's all folks.
+- That is about as far as I'm prepared to take us today.
+- But, feel free to look at the data, build models and ask questions.
+- Look at age. If you can fix the NAs, there's some information there.
+
+# Have Fun Over-Fitting!
+
+<img src="img/titanic-bow.jpg" width=35%>

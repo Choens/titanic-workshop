@@ -33,8 +33,7 @@ output:
 ## - Atomic Data Types
 ## - Vectors
 
-## The slides for this presentation can be gotten at:
-## https://choens.github.io/titanic-workshop/01-introduction-to-r.html
+## Slides URL: https://choens.github.io/titanic-workshop/01-introduction-to-r.html
 
 ```
 
@@ -134,7 +133,6 @@ This is our first visit from Captain Smith.
 
 ```
 
-<br/>
 Answer:
 
 >- [1] 9
@@ -195,7 +193,7 @@ Correct Answers: *(No Peeking!)*
 - R has extensive support for different types of numbers.
 - R can also handle imaginary numbers and other fun mathematical
   oddities.
-- Today, we are going to keep it "real" and focus on simple things.
+- Today, we are going to keep it "real".
 
 ```{r ATOMIC-DATA-TYPES-NUMERIC, echo=TRUE,eval=FALSE,purl=TRUE}
 
@@ -316,13 +314,13 @@ Answer:
 
 >- [1] 9
 
-## Numerice ARE Safer: Discussion
+## Numerics ARE Safer: Discussion
 
 - Avoid integers unless you KNOW it is an integer.
 - Many programming languages will make integers into integers and then
-do integer math, even when you don't want it to.
+  do integer math, even when you don't want it to.
 - R hates you less.
-- Don't look like this guy.
+- Don't look like this guy. Use Numerics.
 
 <img src="img/gilligan.jpg" height=250px>
 
@@ -395,7 +393,7 @@ paste(first_name, last_name, sep=" ")
 Returns:
 
 >- `[1] "Captain Smith"`
->- We will learn additional functions for working with character variables as we go.
+>- We will learn additional functions as we go.
 
 ## Atomic Data Types - DATES {.smaller}
 
@@ -428,8 +426,6 @@ Returns:
 >- But it LOOKS like a date when we look at it.
 
 ## <img src="img/captain-smith-super-small.jpg" height=50px>Practice: Atomic Data Types {.smaller}
-
-- The Captain *(once again)* thinks it is YOUR turn to write some code.
 
 ```{r PRACTICE-ATOMIC-DATA-TYPES, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
@@ -505,14 +501,14 @@ Returns:
 
 ## Vectors - Indexing {.smaller}
 
-- Often, we only want to work with part of a vector.
+- Sometimes, we only want to work with part of a vector.
 
 ```{r VECTORS-INDEXING-1, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
 ## Returns the THIRD value stored in yard_arm.
 yard_arm[3]         ## The square brackets are important.
-                    ## They let us explicitly reference specific
-                    ## values in the vector.
+                    ## They let us reference and filter
+                    ## values in the object.
 
 ```
 
@@ -524,8 +520,7 @@ Returns:
 ```{r VECTORS-INDEXING-2, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
 ## Returns ALL values in yard_arm with a value greater than 2.
-yard_arm[ yard_arm>2 ]        ## The also make it possible
-                              ## to get ranges of values.
+yard_arm[ yard_arm>2 ]        ## Easy way to filter data.
 
 ```
 
@@ -657,9 +652,6 @@ Discussion:
 - Getting Help
 - Atomic Data Types
 - Vectors
-    - Creating
-    - Indexing
-    - Operating On
 
 # Questions?
 

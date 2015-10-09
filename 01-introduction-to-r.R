@@ -7,8 +7,7 @@
 ## - Atomic Data Types
 ## - Vectors
 
-## The slides for this presentation can be gotten at:
-## https://choens.github.io/titanic-workshop/01-introduction-to-r.html
+## Slides URL: https://choens.github.io/titanic-workshop/01-introduction-to-r.html
 
 
 ## ----STARTING-RSTUDIO, echo=FALSE,eval=TRUE,results='hide',purl=TRUE-----
@@ -220,15 +219,14 @@ length(starboard)
 
 ## Returns the THIRD value stored in yard_arm.
 yard_arm[3]         ## The square brackets are important.
-                    ## They let us explicitly reference specific
-                    ## values in the vector.
+                    ## They let us reference and filter
+                    ## values in the object.
 
 
 ## ----VECTORS-INDEXING-2, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"----
 
 ## Returns ALL values in yard_arm with a value greater than 2.
-yard_arm[ yard_arm>2 ]        ## The also make it possible
-                              ## to get ranges of values.
+yard_arm[ yard_arm>2 ]        ## Easy way to filter data.
 
 
 ## ----ARITHMETIC-ON-VECTORS-1, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"----

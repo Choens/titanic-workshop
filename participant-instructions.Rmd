@@ -9,7 +9,9 @@ output:
 
 - Welcome!!!
 - Find a computer and log in using the guest account.
-  - The first log-in may be a little slow.
+    - The first log-in may be a little slow.
+    - **Login:** RTrain
+    - **Password:** Train1009
 - Go to: `https://choens.github.io/titanic-workshop/` <br/> and
   download the zip file listed under `Participant Resources` below.
 - Think deep, cold, watery thoughts.

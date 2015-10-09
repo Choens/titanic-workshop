@@ -37,8 +37,7 @@ output:
 ## - Filtering and Using Data Frames
 ## - Getting Help
 
-## The slides for this presentation can be gotten at:
-## https://choens.github.io/titanic-workshop/01-introduction-to-r.html
+## Slides URL: https://choens.github.io/titanic-workshop/02-data-frames.html
 
 ```
 
@@ -368,3 +367,7 @@ help(round)
 - Quick-R: http://www.statmethods.net/
 - R Tutorial: http://www.r-tutor.com/
 - These resources are ALL listed on the Titanic Workshop Page
+
+# Questions?
+
+<img src="img/titanic-cobh-harbour-1912.jpg" width=75% style="display:block;margin-left:auto;margin-right:auto">

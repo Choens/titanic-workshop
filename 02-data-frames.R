@@ -7,8 +7,7 @@
 ## - Filtering and Using Data Frames
 ## - Getting Help
 
-## The slides for this presentation can be gotten at:
-## https://choens.github.io/titanic-workshop/01-introduction-to-r.html
+## Slides URL: https://choens.github.io/titanic-workshop/02-data-frames.html
 
 
 ## ----WHAT-IS-A-DATA-FRAME, echo=FALSE,eval=TRUE,purl=TRUE----------------

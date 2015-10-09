@@ -14,10 +14,9 @@ output:
 - <a href="./00-about.html" target="_blank">00: About</a>
 - <a href="./01-introduction-to-r.html" target="_blank">01: Introduction To R</a>
 - <a href="./02-data-frames.html" target="_blank">02: Data Frames</a>
-- 03: EDA (Placeholder)
-- 04: Prediction (Placeholder)
-- <a
-  href="./participant-instructions.html" target="_blank">Participant Instructions</a>
+- <a href="./03-eda-and-hypothesis-testing.html" target="_blank">EDA and Hypothesis Testing</a>
+- <a href="./04-regression-and-prediction.html" target="_blank">Regression and Prediction</a>
+- <a href="./participant-instructions.html" target="_blank">Participant Instructions</a>
 
 # Participant Resources
 
@@ -25,7 +24,11 @@ The following link download a ZIP file of workshop materials to this
 computer. You are welcome (encouraged) to keep these materials at the
 end of todays workshop.
 
-- <a href="./titanic-workshop.zip">Titanic Workshop Participant Materials</a>
+Please download the following linked ZIP file and place it on your
+Desktop or someplace easy for you to find. Don't lose it. You are
+going to neeed it.
+
+- <a href="./titanic-workshop.zip">Titanic Workshop Participant Materials (ZIP)</a>
 
 At the conclusions of today's workshop, please take a few minutes to
 complete the workshop satisfation form. It should only take a few
@@ -33,11 +36,22 @@ moments and we really do want to learn how to make this better.
 
 - <a href="https://docs.google.com/forms/d/1kHqxrcbNWRI0_o3CVddUDEw64NAGGxUs6Kw_DwXvle8/viewform" target="_blank"> Participant Survey</a>
 
-# Other Helpful Resources
+# R Resources
 
-These links will open in a new tab.
+List of resources you may find useful in your R journey. Links will
+open in a new tab.
 
 - <a href="https://stackoverflow.com/questions/tagged/r" target="_blank">StackOverflow</a>
     - This link will take you to the current questions list tagged "R".
 - <a href="http://www.statmethods.net/" target="_blank">Quick-R</a>
 - <a href="http://www.r-tutor.com/" target="_blank">R Tutorial</a>
+
+# Additional Resources and Acknowledgements
+
+This is collection of resources I used in the making of this
+workshop. I stole some ideas liberally from all over the Web. Links
+will open in a new tab.
+
+- <a href="http://www.kaggle.com/c/titanic-gettingStarted" target="_blank">Kaggle's "Titanic: Machine Learning From Disaster"</a>
+- <a href="http://www.datacarpentry.org/" target="_blank">Data Carpentry's R Ecology Demo</a>
+- <a href="http://www.encyclopedia-titanica.org/" target="_blank">Encyclopedia Titanica</a>
