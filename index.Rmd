@@ -14,8 +14,8 @@ output:
 - <a href="./00-about.html" target="_blank">00: About</a>
 - <a href="./01-introduction-to-r.html" target="_blank">01: Introduction To R</a>
 - <a href="./02-data-frames.html" target="_blank">02: Data Frames</a>
-- <a href="./03-eda-and-hypothesis-testing.html" target="_blank">EDA and Hypothesis Testing</a>
-- <a href="./04-regression-and-prediction.html" target="_blank">Regression and Prediction</a>
+- <a href="./03-eda-and-hypothesis-testing.html" target="_blank">03: EDA and Hypothesis Testing</a>
+- <a href="./04-regression-and-prediction.html" target="_blank">04: Regression and Prediction</a>
 - <a href="./participant-instructions.html" target="_blank">Participant Instructions</a>
 
 # Participant Resources
