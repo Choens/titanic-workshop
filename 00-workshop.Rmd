@@ -125,10 +125,13 @@ According to Wikipedia, R is:
 
 ## Acknowledgements
 
+A few organizations who contributed / influenced these slides.
+
 - DOH EBCoP
 - SUNY Rockefeller
 - Kaggle's "Titanic: Machine Learning From Disaster" Project
 - Data Carpentry's R Ecology Demo
+- Rush (Canadian Rock Band)
 
 <div class="notes">
 
