@@ -77,7 +77,7 @@ According to Wikipedia, R is:
 
 </div>
 
-## Why Learn R?
+## Why Learn R? {.smaller}
 
 - Integrated
     - SAS & SPSS
