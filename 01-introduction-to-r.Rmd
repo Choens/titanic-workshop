@@ -219,8 +219,10 @@ Returns:
 ```{r ATOMIC-DATA-TYPES-INTEGERS-FUNNY, echo=TRUE,eval=FALSE,purl=TRUE}
 
 ## Integers are funny. They have to be created consciously.
-starboard <- 10
-typeof(starboard)           ## I told you. This is a useful function.
+## FUN FACT: The fourth smoke stack seen in picures is for aesthetic purposes.
+## TODO - Check this "fun fact".
+real_smoke_stacks <- 3
+typeof(real_smoke_stacks)  ## Do you remember this function?
 
 ```
 
@@ -229,15 +231,15 @@ typeof(starboard)           ## I told you. This is a useful function.
 Returns:
 
 >- `[1] "double"`
->- Yes, 10 **IS** an integer but R is treating like a decimal.
+>- Yes, 3 **IS** an integer but R is treating like a flot / double / decimal.
 
 ## Atomic Data Types - Integers {.smaller}
 
 ```{r ATOMIC-DATA-TYPES-INTEGERS, echo=TRUE,eval=FALSE,purl=TRUE}
 
 ## Integers must be created consciously.
-starboard <- as.integer(10)
-typeof(starboard)
+real_smoke_stacks <- as.integer(3)
+typeof(real_smoke_stacks)
 
 ```
 
@@ -248,7 +250,7 @@ Returns:
 ```{r ATOMIC-DATA-TYPES-IS-INTEGER, echo=TRUE,eval=FALSE,purl=TRUE}
 
 ## We can (double) confirm this:
-is.integer(starboard)
+is.integer(real_smoke_stacks)
 
 ```
 
@@ -265,20 +267,20 @@ Returns:
 ```{r NUMERICS-ARE-SAFER-1, echo=TRUE,eval=FALSE,purl=TRUE,results="hide"}
 
 ## Question: What is the assigned value of port?
-port <- as.integer(10)
-port
+real_smoke_stacks <- as.integer(3)
+real_smoke_stacks
 
 ```
 
 Answer:
 
->- `[1] 10`
+>- `[1] 3`
 
 ```{r NUMERICS-ARE-SAFER-2, echo=TRUE,eval=FALSE,purl=TRUE,results="hide"}
 
 ## Question: What is the assigned value of port?
-port <- as.integer(3.14159)
-port
+real_smoke_stacks <- as.integer(3.14159)
+real_smoke_stacks
 
 ```
 
@@ -292,9 +294,9 @@ Answer:
 
 ```{r NUMERICS-ARE-SAFER-3, echo=TRUE,eval=FALSE,purl=TRUE,results="hide"}
 
-## Question: What is the assigned value of port?
-port <- 3.3 * 4
-port
+## Question: What is the assigned value of my_var?
+my_var <- 3.3 * 4
+my_var
 
 ```
 
@@ -305,8 +307,8 @@ Answer:
 ```{r NUMERICS-ARE-SAFER-4, echo=TRUE,eval=FALSE,purl=TRUE,results="hide"}
 
 ## Question: What is the assigned value of port?
-port <- as.integer(3.3) * 3
-port
+my_var <- as.integer(3.3) * 3
+my_var
 
 ```
 
@@ -329,10 +331,10 @@ Answer:
 ```{r ATOMIC-DATA-TYPES-LOGICAL-LTE, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
 ## LOGICAL variables are often created in the process of comparing things.
-starboard <- 10; port <- 15;
+real_smoke_stacks <- 3; apparent_smoke_stacks <- 4;
 
 ## Question: Is this TRUE or FALSE?
-starboard <= port   ## Yeah - It is a little nonsensical.
+real_smoke_stacks <= apparent_smoke_stacks  ## Yes, this is a trivial example.
 
 ```
 
@@ -343,25 +345,25 @@ Answer:
 ```{r ATOMIC-DATA-TYPES-LOGICAL-E, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
 ## Question: Is this TRUE or FALSE?
-port = starboard
+real_smoke_stacks = apparent_smoke_stacks
 
 ```
 
 Answer:
 
 >- NEITHER!!!
->- This is the equivalent of: `port <- 10`!
->- To compare things, we need slightly different syntax. . . .
+>- This is the equivalent of: `real_smoke_stacks <- 4`!
+>- To compare equality, we need a different syntax. . . .
 
 ## Atomic Data Types - LOGICAL
 
 ```{r ATOMIC-DATA-TYPES-LOGICAL-EE, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
 ## LOGICAL variables are often created in the process of comparing things.
-starboard <- 10; port <- 15;
+real_smoke_stacks <- 3; apparent_smoke_stacks <- 4;
 
 ## THIS IS HOW YOU COMPARE THINGS!
-starboard == port
+real_smoke_stacks == apparent_smoke_stacks
 
 ```
 
@@ -373,7 +375,8 @@ Returns:
 ## Atomic Data Types - CHARACTER {.smaller}
 
 - Andy likes to call "character" variables "string" vars.
-- He profusely apologizes in advance.
+- He profusely apologizes in advance, but he has a point, this is like
+  a SQL string.
 
 ```{r ATOMIC-DATA-TYPES-CHARACTER, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
@@ -401,10 +404,11 @@ Returns:
 
 ## POSIX Dates are EASY!
 ## Like an integer, you have to be explicit.
-aft <- as.Date("2015-01-01")
+## TODO: Get the date of the first day of the voyage.
+first_day <- as.Date("2015-01-01")
 
 ## typeof
-typeof(aft)         ## typeof may return something you don't expect.
+typeof(first_day)         ## typeof may return something you don't expect.
 
 ```
 
@@ -421,7 +425,7 @@ aft
 ```
 
 Returns:
-
+## TODO: CHANGE THIS
 >- `[1] "2015-01-01"`
 >- But it LOOKS like a date when we look at it.
 
@@ -435,12 +439,14 @@ Returns:
 ## 2: Using the following code, which is bigger (later)? a_day or today?
 
 ## This creates two date vars.
-a_day <- as.Date('2015-06-30')
-today <- Sys.Date()
+## Get these dates.
+first_day <- as.Date('2015-06-30')
+last_day <- 
 
-## Use this space to compare a_day to today.
+## Use this space to compare first_day to last_day.
 ##
-
+## TODO: Fix the answers below.
+    
 ```
 
 Example Answers:
@@ -462,23 +468,25 @@ Example Answers:
 
 ```{r VECTORS, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
-yard_arm <- c(1,2,3,4,5)      ## The Titanic's maiden voyage
-                              ## lasted for five days.
-yard_arm
+## These are real passenger ages!
+passenger_age <- c(19,50,22,17,54,23,NA,39,42,58)
+passenger_age
 
 ```
 
 Returns:
 
->- [1] 1 2 3 4 5
+>- [1] 19 50 22 17 54 23 NA 39 42 58
 >- The "atomic" variables we created earlier? Just vectors with length 1.
+>- You could argue that the width is "1" and while true, this fact is ignored.
+>- You have to watch out for NA.
 
 ## Vectors - Length
 
 ```{r VECTORS-LENGTH-1, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
 ## The variable yard_arm has five distinct values in it.
-length(yard_arm)
+length(passenger_age)
 
 ```
 
@@ -498,6 +506,13 @@ Returns:
 
 >- `[1] 1`
 
+## Vectors - Descriptive Statistics
+
+```{r VECTORS-LENGTH-1, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
+
+
+```
+
 
 ## Vectors - Indexing {.smaller}
 
@@ -506,7 +521,7 @@ Returns:
 ```{r VECTORS-INDEXING-1, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
 ## Returns the THIRD value stored in yard_arm.
-yard_arm[3]         ## The square brackets are important.
+passenger_age[3]    ## The square brackets are important.
                     ## They let us reference and filter
                     ## values in the object.
 
@@ -514,19 +529,20 @@ yard_arm[3]         ## The square brackets are important.
 
 Returns:
 
->- `[1] 3`
+>- `[1] 22`
 
 
 ```{r VECTORS-INDEXING-2, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
-## Returns ALL values in yard_arm with a value greater than 2.
-yard_arm[ yard_arm>2 ]        ## Easy way to filter data.
+## Returns ALL values in passenger_age with a value greater than 2.
+passenger_age[ passenger_age > 40 ]        ## Easy way to filter data.
 
 ```
 
 Returns:
 
->- `[1] 3 4 5`
+>- `[1] 50 54 NA 42 58`
+>- Why is NA there?
 
 ## Arithmetic on Vectors {.smaller}
 
@@ -535,24 +551,28 @@ Returns:
 ```{r ARITHMETIC-ON-VECTORS-1, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
 ## We can do math on vectors.
-starboard <- c(25,30,40,45,50)
-port <- c(90,70,50,30,10)
+var_a <- c(25,30,40,45,50)
+var_b <- c(90,70,50,30,10)
 
-starboard + port
+var_a + var_b
 
 ```
 
 Returns:
 
 >- `[1] 115 100  90  75  60`
+>- Notice how R did the addition OVER the vector.
+>- Vectors have meaning!
+>- R applies MANY functions OVER the vector.
+>- We call this vectorization! This is an important skill.
 
 ```{r ARITHMETIC-ON-VECTORS-2, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
 ## We can do math on vectors.
-starboard <- c(25,30,40,45,50)
-port <- 3
+var_a <- c(25,30,40,45,50)
+var_b <- 3
 
-starboard * port
+var_a * var_b
 
 ```
 
@@ -562,33 +582,30 @@ Returns:
 
 ## Operating on Vectors {.smaller}
 
-- Many functions will roll up the values.
-
 ```{r OPERATING-ON-VECTORS-1, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
-## We can do math on vectors.
-starboard <- c(25,30,40,45,50)
+## Other functions will aggregate. WHY?
 
-mean(starboard)
+## Average of passenger_age.
+mean(passenger_age, na.rm=TRUE)  ## Why do we need na.rm=TRUE?
+
 
 ```
 
 Returns:
 
->- `[1] 38`
+>- `[1] 36`
 
 ```{r OPERATING-ON-VECTORS-2, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
-## We can do math on vectors.
-starboard <- c(25,30,40,45,50)
-
-sd(starboard)
+## Standard Deviation of passenger_age
+sd(passenger_age, na.rm=TRUE)  ## Why do we need na.rm=TRUE?
 
 ```
 
 Returns:
 
->- `[1] 10.36822`
+>- `[1] 16.06238`
 
 ## Operating on Vectors {.smaller}
 
@@ -597,9 +614,9 @@ Returns:
 ```{r OPERATING-ON-VECTORS-3, echo=TRUE,eval=TRUE,purl=TRUE,results="hide"}
 
 ## We can do math on vectors.
-starboard <- c(25.1,389.776,43.6,41.3,57.56)
+var_c <- c(25.1,389.776,43.6,41.3,57.56)
 
-round(starboard,1)
+round(var_c,1)
 
 ```
 
